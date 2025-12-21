@@ -47,6 +47,6 @@
 
   # See full reference at https://devenv.sh/reference/options/
 
-  android.enable = true;
+  #android.enable = true;
   cachix.enable = false;
 }
