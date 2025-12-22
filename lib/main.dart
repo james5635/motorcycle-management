@@ -105,6 +105,9 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('hello and welcome to flutter'),
+            Icon(Icons.favorite, color: Colors.red[500]),
+            Icon(Icons.star, color: Colors.yellow[600]),
+            Icon(Icons.thumb_up, color: Colors.blue[500]),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
