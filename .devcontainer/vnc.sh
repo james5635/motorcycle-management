@@ -25,7 +25,7 @@ EOF
 
 chmod +x ~/.vnc/xstartup
 # vncserver -localhost no :1 -geometry 1280x800
-# vncserver -geometry 1920x1080
-# vncserver -geometry 1280x720
-vncserver -geometry 1366x768
+# vncserver -localhost no -geometry 1920x1080
+# vncserver -localhost no -geometry 1280x720
+vncserver -localhost no -geometry 1366x768
 
