@@ -4,4 +4,3 @@ sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --no-daem
 
 # source it
 echo "source ~/.nix-profile/etc/profile.d/nix.sh" >> ~/.bashrc
-source ~/.nix-profile/etc/profile.d/nix.sh
