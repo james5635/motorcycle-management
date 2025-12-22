@@ -25,3 +25,5 @@ echo "source ~/.nix-profile/etc/profile.d/nix.sh" >> ~/.bashrc
 # -----------------------------------------------------------------------------
 #
 # NOTE: libglu1-mesa is important
+
+sudo chmod 666 /dev/kvm

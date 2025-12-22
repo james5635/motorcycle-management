@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Start a VNC server and keep it running
-sudo chmod 666 /dev/kvm
 
 sudo apt update
 sudo apt install -y \
