@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Start a VNC server and keep it running
-chmod 666 /dev/kvm
+sudo chmod 666 /dev/kvm
 sudo apt update
-sudo apt install -y \
+sudo apt install -y --no-cache \
   xfce4 xfce4-goodies \
   tigervnc-standalone-server \
-  novnc websockify
+  novnc websockify dbus-x11
 mkdir -p ~/.vnc
 cat << EOF > ~/.vnc/xstartup
 #!/bin/sh
