@@ -1,5 +1,5 @@
 {
-  description = "Flutter 3.13.x";
+  description = "Flutter";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/25.11";
@@ -19,7 +19,8 @@
 
         androidComposition = pkgs.androidenv.composeAndroidPackages {
           # buildToolsVersions = [ "34.0.0" "28.0.3" "36.0.0"];
-          buildToolsVersions = [ "35.0.0" ];
+          buildToolsVersions = [ "35.0.0" "34.0.0" ];
+          cmakeVersions      = ["3.22.1"];
           # platformVersions   = [ "34" "28" ];
           platformVersions   = [ "36" ];
           abiVersions        = [ "x86_64" ];
