@@ -7,7 +7,8 @@ while true; do
 
     case "$key" in
         r)
-            gradle compileJava
+            # gradle compileJava
+            `pwd`/gradlew compileJava
             ;;
         q)
             echo "Bye!"
