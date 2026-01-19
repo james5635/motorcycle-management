@@ -1,23 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(),
-      routes: {'/review': (context) => ReviewPage()},
-    );
-  }
-}
 
 class ReviewPage extends StatelessWidget {
   // final String _name;
@@ -113,10 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 textInputAction: TextInputAction.next,
                 validator: (value) {
-                  if (value == null) {
-                    // return 'null value';
-                  }
-                  if (value.isEmpty) {
+                  if (value == null || value.isEmpty) {
                     return 'empty value';
                   }
                   return null;
