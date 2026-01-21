@@ -6,6 +6,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
@@ -14,6 +16,8 @@ import java.time.LocalDateTime;
 @Table(name = "Users")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,10 +37,12 @@ public class User {
     @Column(columnDefinition = "TEXT")
     private String address;
 
+    @Builder.Default
     private String role = "customer";
 
     private String profileImageUrl;
 
+    @Builder.Default
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 }

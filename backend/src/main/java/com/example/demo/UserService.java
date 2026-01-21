@@ -11,10 +11,15 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    public long count() {
+        return userRepository.count();
+    }
+
     public void save(User u) {
         userRepository.save(u);
     }
-    public List<User> getAll(){
+
+    public List<User> getAll() {
         return (List<User>) userRepository.findAll();
     }
 }
