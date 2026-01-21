@@ -1,36 +1,40 @@
 package com.example.demo;
 
-import java.time.LocalDateTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import jakarta.persistence.Column;
 
 @Component
 public class DatabaseSeeder implements CommandLineRunner {
 
     private final UserService userService;
 
-    public DatabaseSeeder(UserService userService) {
+    private final PasswordEncoder encoder;
+
+    @Autowired
+    public DatabaseSeeder(UserService userService, PasswordEncoder encoder) {
         this.userService = userService;
+        this.encoder = encoder;
     }
 
     @Override
     public void run(String... args) {
         if (userService.count() == 0) {
             User u1 = User.builder().fullName("jame").email("jame@gamil.com")
-                    .passwordHash("$2y$10$Cs/4ZSR7KqS8ujmUNgZnQ.2sXNEAV0iHph64pkGyYy0YRSbkQ1tEa")
+                    .passwordHash(encoder.encode("hello"))
                     .phoneNumber("2213123").address("phnom penh").role("Customer")
-                    .profileImageUrl("https://aaa.com")
+                    .profileImageUrl("https://aaa.comss")
                     .build();
             User u2 = User.builder().fullName("jonh").email("jonh@gmail.com")
-                    .passwordHash("$2y$10$Cs/4ZSR7KqS8ujmUNgZnQ.2sXNEAV0iHph64pkGyYy0YRSbkQ1tEa")
+                    .passwordHash(encoder.encode("hello"))
                     .phoneNumber("2213123").address("phnom penh").role("Customer")
-                    .profileImageUrl("https://aaa.com")
+                    .profileImageUrl("https://aaa.comas")
                     .build();
-            userService.save(u1);
-            userService.save(u2);
+            // userService.save(u1);
+            // userService.save(u2);
 
         }
     }
