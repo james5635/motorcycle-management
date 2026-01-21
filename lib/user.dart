@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -9,6 +11,14 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> {
+  TextEditingController _fullName = TextEditingController();
+  TextEditingController _password = TextEditingController();
+  TextEditingController _email = TextEditingController();
+  TextEditingController _phoneNumber = TextEditingController();
+  TextEditingController _address = TextEditingController();
+  TextEditingController _profileImageUrl = TextEditingController();
+  String? selectedRole;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,14 +29,29 @@ class _UserPageState extends State<UserPage> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                TextField(decoration: InputDecoration(labelText: "Full Name")),
-                TextField(decoration: InputDecoration(labelText: "Password")),
-                TextField(decoration: InputDecoration(labelText: "Email")),
                 TextField(
+                  controller: _fullName,
+                  decoration: InputDecoration(labelText: "Full Name"),
+                ),
+                TextField(
+                  controller: _password,
+                  decoration: InputDecoration(labelText: "Password"),
+                ),
+                TextField(
+                  controller: _email,
+                  decoration: InputDecoration(labelText: "Email"),
+                ),
+                TextField(
+                  controller: _phoneNumber,
                   decoration: InputDecoration(labelText: "Phone Number"),
                 ),
-                TextField(decoration: InputDecoration(labelText: "Address")),
+
                 TextField(
+                  controller: _address,
+                  decoration: InputDecoration(labelText: "Address"),
+                ),
+                TextField(
+                  controller: _profileImageUrl,
                   decoration: InputDecoration(labelText: "profileImageUrl"),
                 ),
                 DropdownButtonFormField<String>(
@@ -39,15 +64,31 @@ class _UserPageState extends State<UserPage> {
                         );
                       })
                       .toList(),
-                  onChanged: (String? newValue) {},
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      selectedRole = newValue;
+                    });
+                  },
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    print("hi");
-                    var response = await http.get(
+                    var response = await http.post(
                       Uri.parse("http://localhost:8080/user"),
+                      headers: <String, String>{
+                        'Content-Type': 'application/json; charset=UTF-8',
+                      },
+                      body: jsonEncode({
+                        "fullName": _fullName.text,
+                        "passwordHash": _password.text,
+                        "email": _email.text,
+                        "phoneNumber": _phoneNumber.text,
+                        "address": _address.text,
+                        "profileImageUrl": _profileImageUrl.text,
+                        "role": selectedRole,
+                        "createdAt": DateTime.now().toIso8601String(),
+                      }),
                     );
-                    print("response" + response.body);
+                    print(response.body);
                   },
                   child: Text("Create account"),
                 ),
