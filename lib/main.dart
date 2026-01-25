@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/review': (context) => ReviewPage(), 
         '/user': (context) => UserPage(),
         '/login': (context) => LoginPage(),
+        '/start': (context) => StartPage(),
 
       },
     );
