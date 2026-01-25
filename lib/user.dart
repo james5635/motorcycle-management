@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:motorcycle_management/config.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({super.key});
@@ -11,6 +12,7 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> {
+  final _formKey = GlobalKey<FormState>();
   TextEditingController _fullName = TextEditingController();
   TextEditingController _password = TextEditingController();
   TextEditingController _email = TextEditingController();
@@ -18,6 +20,78 @@ class _UserPageState extends State<UserPage> {
   TextEditingController _address = TextEditingController();
   TextEditingController _profileImageUrl = TextEditingController();
   String? selectedRole;
+  
+  bool _terms = false;
+
+  // Validation functions
+  String? _validateFullName(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Full name is required';
+    }
+    if (value.length < 2) {
+      return 'Full name must be at least 2 characters';
+    }
+    return null;
+  }
+
+  String? _validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Password is required';
+    }
+    if (value.length < 6) {
+      return 'Password must be at least 6 characters';
+    }
+    return null;
+  }
+
+  String? _validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Email is required';
+    }
+    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+    if (!emailRegex.hasMatch(value)) {
+      return 'Please enter a valid email address';
+    }
+    return null;
+  }
+
+  String? _validatePhoneNumber(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Phone number is required';
+    }
+    final phoneRegex = RegExp(r'^\+?[\d\s\-\(\)]{10,}$');
+    if (!phoneRegex.hasMatch(value)) {
+      return 'Please enter a valid phone number';
+    }
+    return null;
+  }
+
+  String? _validateAddress(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Address is required';
+    }
+    if (value.length < 5) {
+      return 'Address must be at least 5 characters';
+    }
+    return null;
+  }
+
+  String? _validateProfileImageUrl(String? value) {
+    if (value != null && value.isNotEmpty) {
+      final urlRegex = RegExp(r'^https?://[^\s/$.?#].[^\s]*$');
+      if (!urlRegex.hasMatch(value)) {
+        return 'Please enter a valid URL';
+      }
+    }
+    return null;
+  }
+
+  String? _validateRole(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please select a role';
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,75 +101,151 @@ class _UserPageState extends State<UserPage> {
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                TextField(
-                  controller: _fullName,
-                  decoration: InputDecoration(labelText: "Full Name"),
-                ),
-                TextField(
-                  controller: _password,
-                  decoration: InputDecoration(labelText: "Password"),
-                ),
-                TextField(
-                  controller: _email,
-                  decoration: InputDecoration(labelText: "Email"),
-                ),
-                TextField(
-                  controller: _phoneNumber,
-                  decoration: InputDecoration(labelText: "Phone Number"),
-                ),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  TextFormField(
+                    controller: _fullName,
+                    decoration: InputDecoration(labelText: "Full Name",
+                    border: OutlineInputBorder(), 
+                    ),
+                    validator: _validateFullName,
+                  ),
+                  SizedBox(height: 10),
+                  TextFormField(
+                    controller: _password,
+                    decoration: InputDecoration(labelText: "Password",
+                    border: OutlineInputBorder(), 
+                    ),
+                    obscureText: true,
+                    validator: _validatePassword,
+                  ),
+                  SizedBox(height: 10),
+                  TextFormField(
+                    controller: _email,
+                    decoration: InputDecoration(labelText: "Email",
+                    border: OutlineInputBorder(), 
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                    validator: _validateEmail,
+                  ),
+                  SizedBox(height: 10),
+                  TextFormField(
+                    controller: _phoneNumber,
+                    decoration: InputDecoration(labelText: "Phone Number",
+                    border: OutlineInputBorder(), 
+                    ),
+                    keyboardType: TextInputType.phone,
+                    validator: _validatePhoneNumber,
+                  ),
+                  SizedBox(height: 10),
+                  TextFormField(
+                    controller: _address,
+                    decoration: InputDecoration(labelText: "Address",
+                    border: OutlineInputBorder(), 
+                    ),
+                    validator: _validateAddress,
+                  ),
+                  SizedBox(height: 10),
+                  TextFormField(
+                    controller: _profileImageUrl,
+                    decoration: InputDecoration(labelText: "Profile Image URL",
+                    border: OutlineInputBorder(), 
+                    ),
+                    keyboardType: TextInputType.url,
+                    validator: _validateProfileImageUrl,
+                  ),
+                  SizedBox(height: 10),
+                  DropdownButtonFormField<String>(
+                    
+                    decoration: InputDecoration(labelText: "Role",
+                    border: OutlineInputBorder(), 
+                    ),
+                    value: selectedRole,
+                    items: <String>['customer', 'admin', 'guest']
+                        .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        })
+                        .toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        selectedRole = newValue;
+                      });
+                    },
+                    validator: _validateRole,
+                  ),
+                  SizedBox(height: 10),
 
-                TextField(
-                  controller: _address,
-                  decoration: InputDecoration(labelText: "Address"),
-                ),
-                TextField(
-                  controller: _profileImageUrl,
-                  decoration: InputDecoration(labelText: "profileImageUrl"),
-                ),
-                DropdownButtonFormField<String>(
-                  decoration: InputDecoration(labelText: "Role"),
-                  items: <String>['customer', 'admin', 'guest']
-                      .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
+              CheckboxListTile(
+                value: _terms,
+                onChanged: (v) => setState(() => _terms = v ?? false),
+                title: const Text('I agree to Terms'),
+                subtitle: !_terms
+                    ? const Text(
+                        'Required',
+                        style: TextStyle(color: Colors.red),
+                      )
+                    : null,
+                controlAffinity: ListTileControlAffinity.leading,
+              ),
+              SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: () async {
+                      if (!_formKey.currentState!.validate() || !_terms) {
+                        return;
+                      }
+                      try {
+                      var response = await http.post(
+                        Uri.parse("${config['apiUrl']}/user"),
+                        headers: <String, String>{
+                          'Content-Type': 'application/json; charset=UTF-8',
+                        },
+                          body: jsonEncode({
+                          "fullName": _fullName.text,
+                          "passwordHash": _password.text,
+                          "email": _email.text,
+                          "phoneNumber": _phoneNumber.text,
+                          "address": _address.text,
+                          "profileImageUrl": _profileImageUrl.text,
+                          "role": selectedRole,
+                          "createdAt": DateTime.now().toIso8601String(),
+                        }),
+                      );
+                      if (response.statusCode == 200) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("User created successfully"),
+                            backgroundColor: Colors.green,
+                          ),
                         );
-                      })
-                      .toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      selectedRole = newValue;
-                    });
-                  },
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    var response = await http.post(
-                      Uri.parse("http://localhost:8080/user"),
-                      headers: <String, String>{
-                        'Content-Type': 'application/json; charset=UTF-8',
-                      },
-                      body: jsonEncode({
-                        "fullName": _fullName.text,
-                        "passwordHash": _password.text,
-                        "email": _email.text,
-                        "phoneNumber": _phoneNumber.text,
-                        "address": _address.text,
-                        "profileImageUrl": _profileImageUrl.text,
-                        "role": selectedRole,
-                        "createdAt": DateTime.now().toIso8601String(),
-                      }),
-                    );
-                    print(response.body);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("Failed to create user"),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      }
+                    } catch (_) {   
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("Failed to create user"),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                    }
                   },
                   child: Text("Create account"),
                 ),
               ],
             ),
           ),
-        ],
+        )],
       ),
     );
   }
