@@ -1,11 +1,9 @@
 package com.example.demo;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
 
 @Component
 public class DatabaseSeeder implements CommandLineRunner {
@@ -33,8 +31,8 @@ public class DatabaseSeeder implements CommandLineRunner {
                     .phoneNumber("2213123").address("phnom penh").role("Customer")
                     .profileImageUrl("https://aaa.comas")
                     .build();
-            // userService.save(u1);
-            // userService.save(u2);
+            userService.save(u1);
+            userService.save(u2);
 
         }
     }

@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,24 +26,24 @@ public class HomeController {
         return "hello world";
     }
 
-    @GetMapping("/all")
-    public List<Customer> getAll() {
-        System.out.print(customerService.getAll());
-        return customerService.getAll();
-    }
-
-    @PostMapping("/save")
-    public void save(@RequestBody Customer c) {
-        customerService.save(c);
-    }
-
     @PostMapping("/user")
-    public void save(@RequestBody User u) {
+    public void saveUser(@RequestBody User u) {
         userService.save(u);
     }
 
     @GetMapping("/user")
     public List<User> getAllUser() {
         return userService.getAll();
+    }
+
+    @PostMapping("/user-login")
+    public boolean loginUser(@RequestBody Map<String, String> l) {
+        String username = l.get("username");
+        String password = l.get("password");
+        if ( username == null || password  == null  )
+        {
+            return false; 
+        }
+            return userService.loginUser(username, password);
     }
 }
