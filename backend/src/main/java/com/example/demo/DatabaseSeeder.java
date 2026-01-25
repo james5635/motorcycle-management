@@ -22,12 +22,12 @@ public class DatabaseSeeder implements CommandLineRunner {
     public void run(String... args) {
         if (userService.count() == 0) {
             User u1 = User.builder().fullName("jame").email("jame@gamil.com")
-                    .passwordHash(encoder.encode("hello"))
+                    .passwordHash("helloworld")
                     .phoneNumber("2213123").address("phnom penh").role("Customer")
                     .profileImageUrl("https://aaa.comss")
                     .build();
             User u2 = User.builder().fullName("jonh").email("jonh@gmail.com")
-                    .passwordHash(encoder.encode("hello"))
+                    .passwordHash("helloworld")
                     .phoneNumber("2213123").address("phnom penh").role("Customer")
                     .profileImageUrl("https://aaa.comas")
                     .build();

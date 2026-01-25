@@ -19,6 +19,7 @@ public class UserService {
     }
 
     public void save(User u) {
+        u.setPasswordHash(encoder.encode(u.getPasswordHash()));
         userRepository.save(u);
     }
 
