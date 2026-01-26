@@ -2,6 +2,8 @@ package com.example.demo;
 
 import java.time.LocalDateTime;
 
+import com.example.demo.product.Product;
+import com.example.demo.user.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;

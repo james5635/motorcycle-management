@@ -1,8 +1,9 @@
-package com.example.demo;
+package com.example.demo.product;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.example.demo.category.Category;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
@@ -12,13 +13,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "Products")
 @Data
-@NoArgsConstructor
+@Builder
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,14 +40,17 @@ public class Product {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
+    @Builder.Default
     private Integer stockQuantity = 0;
     private String imageUrl;
     private String brand;
     private Integer modelYear;
     private Integer engineCc;
     private String color;
+    @Builder.Default
     private String conditionStatus = "new";
 
+    @Builder.Default
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 }

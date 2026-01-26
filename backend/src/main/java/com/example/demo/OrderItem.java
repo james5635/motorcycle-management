@@ -2,6 +2,7 @@ package com.example.demo;
 
 import java.math.BigDecimal;
 
+import com.example.demo.product.Product;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
