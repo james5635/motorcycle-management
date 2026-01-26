@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:motorcycle_management/config.dart';
 
 class ReviewPage extends StatelessWidget {
   // final String _name;
@@ -128,16 +132,42 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 5),
 
               ElevatedButton(
-                onPressed: () {
-                  
-                  if (!_formKey.currentState!.validate() ) {
+                onPressed: () async {
+                  if (!_formKey.currentState!.validate()) {
                     return;
                   }
+                  try {
+                    var response = await http.post(
+                      Uri.parse("${config['apiUrl']}/user-login"),
+                      headers: <String, String>{
+                        'Content-Type': 'application/json; charset=UTF-8',
+                      },
 
-                  Navigator.pushNamed(
-                    context,
-                    "/home",
-                  );  
+                      body: jsonEncode({
+                        "username": _name.text,
+                        "password": _password.text,
+                      }),
+                    );
+                    if (response.statusCode != 200 || response.body == 'false') {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Login failed'),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                      return;
+                    }
+                    Navigator.pushNamedAndRemoveUntil(context, '/home',
+                    (_) => false
+                    );
+                  } catch (_) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Login failed'),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  }
                 },
                 child: Text("login"),
               ),
