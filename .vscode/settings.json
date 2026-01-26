@@ -1,4 +1,5 @@
 {
     "dart.flutterHotReloadOnSave": "manual",
-    "editor.mouseWheelZoom": true
+    "editor.mouseWheelZoom": true,
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
