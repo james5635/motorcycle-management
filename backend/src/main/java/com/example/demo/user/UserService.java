@@ -16,10 +16,10 @@ public class UserService {
 
    
 
-    public User createUser(CreateUserDto dto) {
+    public User createUser(CreateUserDto dto, String filename) {
         User user = User.builder().fullName(dto.username()).email(dto.email())
                 .passwordHash(encoder.encode(dto.password())).phoneNumber(dto.phoneNumber()).address(dto.address())
-                .role(dto.role()).profileImageUrl(dto.profileImageUrl()).build();
+                .role(dto.role()).profileImageUrl(filename).build();
         return userRepository.save(user);
 
     }
