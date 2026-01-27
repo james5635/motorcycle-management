@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
               TextFormField(
                 controller: _name,
                 decoration: const InputDecoration(
-                  labelText: 'Full name',
+                  labelText: 'Username',
                   border: OutlineInputBorder(),
                 ),
                 textInputAction: TextInputAction.next,
@@ -138,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                   }
                   try {
                     var response = await http.post(
-                      Uri.parse("${config['apiUrl']}/user-login"),
+                      Uri.parse("${config['apiUrl']}/auth/login"),
                       headers: <String, String>{
                         'Content-Type': 'application/json; charset=UTF-8',
                       },

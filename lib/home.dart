@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Home Page")),
+      // appBar: AppBar(title: const Text("Home Page")),
       body: _pages[_currentIndex], // 👈 switch content here
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -48,7 +48,18 @@ class _HomePageState extends State<HomePage> {
 class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Home"));
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        childAspectRatio: 1, // width / height
+      ),
+      itemCount: 20,
+      itemBuilder: (context, index) {
+        return Card(elevation: 4, child: Center(child: Text('Item $index')));
+      },
+    );
   }
 }
 
@@ -77,3 +88,4 @@ class SettingsTab extends StatelessWidget {
     );
   }
 }
+
