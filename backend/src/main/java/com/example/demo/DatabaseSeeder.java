@@ -5,34 +5,34 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.example.demo.user.CreateUserDto;
+import com.example.demo.user.User;
+import com.example.demo.user.UserService;
+
 @Component
 public class DatabaseSeeder implements CommandLineRunner {
 
     private final UserService userService;
 
-    private final PasswordEncoder encoder;
-
-    @Autowired
-    public DatabaseSeeder(UserService userService, PasswordEncoder encoder) {
+    public DatabaseSeeder(UserService userService) {
         this.userService = userService;
-        this.encoder = encoder;
     }
 
     @Override
     public void run(String... args) {
         if (userService.count() == 0) {
-            User u1 = User.builder().fullName("jame").email("jame@gamil.com")
-                    .passwordHash("helloworld")
+            CreateUserDto u1 = CreateUserDto.builder().username("jame").email("jame@gamil.com")
+                    .password("helloworld")
                     .phoneNumber("2213123").address("phnom penh").role("Customer")
-                    .profileImageUrl("https://aaa.comss")
+                    // .profileImageUrl("https://aaa.comss")
                     .build();
-            User u2 = User.builder().fullName("jonh").email("jonh@gmail.com")
-                    .passwordHash("helloworld")
+            CreateUserDto u2 = CreateUserDto.builder().username("jonh").email("jonh@gmail.com")
+                    .password("helloworld")
                     .phoneNumber("2213123").address("phnom penh").role("Customer")
-                    .profileImageUrl("https://aaa.comas")
+                    // .profileImageUrl("https://aaa.comas")
                     .build();
-            userService.save(u1);
-            userService.save(u2);
+            userService.createUser(u1, "a.jpg");
+            userService.createUser(u2, "b.jpg");
 
         }
     }

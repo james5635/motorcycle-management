@@ -3,6 +3,7 @@ package com.example.demo;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.example.demo.user.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;

@@ -39,3 +39,8 @@ dependencies {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
+
+// tasks.withType<JavaCompile> {
+//   // Support Beam's @JavaBeanSchema with @SchemaCreate all-args constructors
+//   options.compilerArgs.add("-parameters")
+// }
