@@ -6,20 +6,24 @@ import 'package:motorcycle_management/config.dart';
 
 // --- SCREEN 1: PROFILE SETTING ---
 
-
-class ProfileSettingScreen extends StatelessWidget {
+class ProfileSettingScreen extends StatefulWidget {
   final int userId;
   const ProfileSettingScreen({super.key, required this.userId});
 
   @override
+  State<ProfileSettingScreen> createState() => _ProfileSettingScreenState();
+}
+
+class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body:Center(child:  SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: FutureBuilder(
           future: (() async {
             var user = await http.get(
-              Uri.parse("${config['apiUrl']}/user/$userId"),
+              Uri.parse("${config['apiUrl']}/user/${widget.userId}"),
             );
             // var image = await http.get(
             //   Uri.parse("${config['apiUrl']}/uploads/${jsonDecode(user.body)["profileImageUrl"]}"),
@@ -33,7 +37,7 @@ class ProfileSettingScreen extends StatelessWidget {
           })(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
+              return CircularProgressIndicator();
             } else if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else if (snapshot.hasData) {
@@ -156,7 +160,7 @@ class ProfileSettingScreen extends StatelessWidget {
           },
         ),
       ),
-    );
+    ));
   }
 }
 
