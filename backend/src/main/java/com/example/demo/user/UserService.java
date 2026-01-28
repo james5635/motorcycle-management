@@ -1,10 +1,15 @@
 package com.example.demo.user;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.ErrorResponse;
 
 @Service
 public class UserService {
@@ -13,8 +18,6 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private PasswordEncoder encoder;
-
-   
 
     public User createUser(CreateUserDto dto, String filename) {
         User user = User.builder().fullName(dto.username()).email(dto.email())
@@ -63,14 +66,19 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public boolean loginUser(String username, String password) {
+    public ResponseEntity<?> loginUser(String username, String password) {
         User user = userRepository.findByFullName(username);
         if (user == null)
-            return false;
-
-        return encoder.matches(password, user.getPasswordHash());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+                    Map.of("error", "Invalid username"));
+        if (encoder.matches(password, user.getPasswordHash()) == false) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+                Map.of("error", "Invalid password"));
+        }
+        return ResponseEntity.ok(Map.of("userId", user.getUserId()));
     }
-    public long count(){
+
+    public long count() {
         return userRepository.count();
     }
 }

@@ -2,7 +2,10 @@ package com.example.demo.controller;
 
 import java.util.Map;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +24,12 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public boolean loginUser(@RequestBody Map<String, String> l) {
+    public ResponseEntity<?> loginUser(@RequestBody Map<String, String> l) {
         String username = l.get("username");
         String password = l.get("password");
         if (username == null || password == null) {
-            return false;
+       ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+                Map.of("error", "username or password cannot be null"));
         }
         return userService.loginUser(username, password);
     }
