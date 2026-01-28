@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:motorcycle_management/home.dart';
 import 'package:motorcycle_management/login.dart';
+import 'package:motorcycle_management/profile.dart';
 import 'package:motorcycle_management/start.dart';
 import 'package:motorcycle_management/user.dart';
 
@@ -20,11 +21,11 @@ class MyApp extends StatelessWidget {
       home: const StartPage(),
       routes: {
         '/home': (context) => HomePage(),
-        '/review': (context) => ReviewPage(), 
+        '/review': (context) => ReviewPage(),
         '/user': (context) => UserPage(),
         '/login': (context) => LoginPage(),
         '/start': (context) => StartPage(),
-
+        '/profile': (context) => ProfilePage(),
       },
     );
   }

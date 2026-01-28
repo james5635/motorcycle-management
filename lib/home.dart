@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:motorcycle_management/tab/setting.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,15 +13,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
+
+  @override
+  Widget build(BuildContext context) {
+
   final List<Widget> _pages = [
     HomeTab(),
     MotorcyclesTab(),
     ChatTab(),
-    SettingsTab(),
+    ProfileSettingScreen(userId: (ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>)["userId"]!)  ,
   ];
 
-  @override
-  Widget build(BuildContext context) {
+    
     return Scaffold(
       // appBar: AppBar(title: const Text("Home Page")),
       body: _pages[_currentIndex], // 👈 switch content here
@@ -76,16 +80,3 @@ class ChatTab extends StatelessWidget {
     return Center(child: Text("Chat"));
   }
 }
-
-class SettingsTab extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        Navigator.pushNamedAndRemoveUntil(context, '/start', (_) => false);
-      },
-      child: Text("logout"),
-    );
-  }
-}
-

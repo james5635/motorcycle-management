@@ -1,26 +1,36 @@
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:motorcycle_management/config.dart';
-class ProfilePage extends StatefulWidget{
+
+class ProfilePage extends StatefulWidget {
   @override
   State<ProfilePage> createState() {
     return _ProfilePageState();
   }
-
 }
 
-class _ProfilePageState extends State<ProfilePage>{
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(children: [
-
-
-      ],),
-      
-
-    )
+      appBar: AppBar(title: Text("Profile")),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text("abc"),
+            Text("abc"),
+            Text("abc"),
+            Text("abc"),
+            Text("abc"),
+            Text("abc"),
+            Text("abc"),
+            Text("abc"),
+            Text("abc"),
+            Text("abc"),
+          ],
+        ),
+      ),
+    );
   }
-
 }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -148,17 +149,20 @@ class _LoginPageState extends State<LoginPage> {
                         "password": _password.text,
                       }),
                     );
-                    if (response.statusCode != 200 || response.body == 'false') {
+                    if (response.statusCode != 200) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Login failed'),
-                        backgroundColor: Colors.red,
-                      ),
-                    );
+                        SnackBar(
+                          content: Text('Login failed'),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
                       return;
                     }
-                    Navigator.pushNamedAndRemoveUntil(context, '/home',
-                    (_) => false
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      '/home',
+                      (_) => false,
+                      arguments: jsonDecode(response.body),
                     );
                   } catch (_) {
                     ScaffoldMessenger.of(context).showSnackBar(
