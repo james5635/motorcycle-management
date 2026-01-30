@@ -59,12 +59,25 @@ public class UserController {
         Path filePath = Paths.get(uploadDir, filename);
 
         Files.copy(file.getInputStream(), filePath);
-                
+
         return userService.createUser(userDto, filename);
     }
 
-    @PutMapping("/{id}")
-    public User updateUser(@PathVariable long id, @RequestBody UpdateUserDto dto) {
+    @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public User updateUser(@PathVariable long id, @RequestPart("user") UpdateUserDto dto,
+            @RequestPart(value = "profileImage", required = false) MultipartFile file) throws IOException {
+        if (file != null && !file.isEmpty()) {
+            String uploadDir = "uploads/";
+            Files.createDirectories(Paths.get(uploadDir));
+
+            String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
+            Path filePath = Paths.get(uploadDir, filename);
+
+            Files.copy(file.getInputStream(), filePath);
+
+            dto = dto.withProfileImageUrl(filename);
+        }
+
         return userService.updateUser(id, dto);
     }
 
