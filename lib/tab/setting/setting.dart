@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:motorcycle_management/config.dart';
+import 'package:motorcycle_management/tab/setting/edit_profile.dart';
 
 // --- SCREEN 1: PROFILE SETTING ---
 
@@ -94,7 +95,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                         onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const EditProfileScreen(),
+                            builder: (context) =>  EditProfileScreen(user: snapshot.data!["user"]),
                           ),
                         ),
                       ),
@@ -161,91 +162,6 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
         ),
       ),
     ));
-  }
-}
-
-// --- SCREEN 2: EDIT PROFILE ---
-class EditProfileScreen extends StatelessWidget {
-  const EditProfileScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
-        ),
-        centerTitle: true,
-        title: const Text(
-          "EDIT PROFILE",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            Stack(
-              children: [
-                const CircleAvatar(
-                  radius: 60,
-                  backgroundImage: NetworkImage(
-                    'https://i.pravatar.cc/150?u=scarlett',
-                  ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: Container(
-                    padding: const EdgeInsets.all(4),
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF1E272E),
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.camera_alt_outlined,
-                      color: Colors.white,
-                      size: 20,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 40),
-            const CustomInput(label: "Name", hint: "Scarlett"),
-            const CustomInput(label: "Nick Name", hint: "Davis"),
-            CustomInput(
-              label: "Email",
-              hint: "Scarlettdavis@gmail.com",
-              suffix: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  elevation: 0,
-                ),
-                child: const Text(
-                  "Verify",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ),
-            const CustomInput(label: "Phone Number", hint: "555-1234-5678"),
-            const CustomInput(label: "Date of birth", hint: "18.May.2001"),
-          ],
-        ),
-      ),
-    );
   }
 }
 
@@ -330,53 +246,6 @@ class SettingsTile extends StatelessWidget {
         style: const TextStyle(fontSize: 12, color: Colors.grey),
       ),
       trailing: trailing ?? const Icon(Icons.chevron_right, color: Colors.grey),
-    );
-  }
-}
-
-class CustomInput extends StatelessWidget {
-  final String label;
-  final String hint;
-  final Widget? suffix;
-
-  const CustomInput({
-    super.key,
-    required this.label,
-    required this.hint,
-    this.suffix,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            label,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-          ),
-          const SizedBox(height: 8),
-          TextField(
-            decoration: InputDecoration(
-              hintText: hint,
-              hintStyle: const TextStyle(color: Colors.grey),
-              filled: true,
-              fillColor: Colors.white,
-              suffixIcon: suffix,
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 16,
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: BorderSide.none,
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

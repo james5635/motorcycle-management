@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:motorcycle_management/tab/setting.dart';
+import 'package:motorcycle_management/tab/setting/setting.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
