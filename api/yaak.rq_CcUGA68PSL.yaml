@@ -1,8 +1,8 @@
 type: http_request
 model: http_request
-id: rq_VyhWnrAiTL
-createdAt: 2026-02-02T07:46:18.383243899
-updatedAt: 2026-02-02T08:52:49.014866927
+id: rq_CcUGA68PSL
+createdAt: 2026-02-02T08:54:16.197425737
+updatedAt: 2026-02-02T08:54:36.217200006
 workspaceId: wk_TfnDoAskcd
 folderId: fl_zZnfzy7wpc
 authentication: {}
@@ -15,11 +15,11 @@ body:
     name: product
     value: '{    "categoryId": 1,    "name": "dream",    "description": "good moto dream",    "price": 10,    "stockQuantity": 1,    "imageUrl": "aaa.com",    "brand": "honda",    "modelYear": 2022,    "engineCc": 12,    "color": "blue",    "conditionStatus": "new",    "createdAt" : "2025-02-02T00:00:00"}'
   - enabled: true
-    file: /home/jame/Desktop/coding/motorcycle-management/asset/images/10468@2x.jpg
+    file: /home/jame/Desktop/coding/motorcycle-management/asset/images/dream.webp
     id: iJC3MPyfU7
     name: productImage
   - enabled: true
-    id: RZsNAGBeSr
+    id: nzqBh3Jf95
     name: ''
     value: ''
 bodyType: multipart/form-data
@@ -30,7 +30,7 @@ headers:
   value: multipart/form-data
   id: Cz0wjTSGAd
 method: POST
-name: CreateProduct Copy
-sortPriority: 1000.0
+name: CreateProduct Copy 6
+sortPriority: 1000.005
 url: ${[ URL ]}/product
 urlParameters: []
