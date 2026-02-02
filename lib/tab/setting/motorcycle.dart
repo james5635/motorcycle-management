@@ -1,21 +1,23 @@
+// Container + BoxDecoration
+// ClipRRect
+// Card
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:motorcycle_management/config.dart';
+
 // --- 1. Product Grid Screen ---
 class ProductGridScreen extends StatelessWidget {
   const ProductGridScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-   
-
     return Scaffold(
       backgroundColor: Colors.white,
 
-      body: 
-      FutureBuilder(
+      body: FutureBuilder(
         future: (() async {
           var products = await http.get(
             Uri.parse("${config['apiUrl']}/product"),
@@ -37,7 +39,8 @@ class ProductGridScreen extends StatelessWidget {
                 crossAxisSpacing: 15,
                 mainAxisSpacing: 15,
               ),
-              itemBuilder: (context, index) => ProductCard(product: snapshot.data[index]),
+              itemBuilder: (context, index) =>
+                  ProductCard(product: snapshot.data[index]),
             );
           }
         },
@@ -60,62 +63,77 @@ class ProductCard extends StatelessWidget {
           builder: (context) => ProductDetailScreen(product: product),
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Stack(
-              children: [
-                Hero(
-                  tag: product["name"], // The animation "anchor"
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
-                        image: NetworkImage("${config['apiUrl']}/uploads/${product["imageUrl"]}"),
-                        fit: BoxFit.cover,
+      child: Container(
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 255, 255, 255), // Background color of the container
+          border: Border.all(
+            // Defines the border
+            color: const Color.fromARGB(255, 199, 199, 199), // Border color
+            width: 1, // Border width
+          ),
+          borderRadius: BorderRadius.circular(10), // Rounds all corners
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Stack(
+                children: [
+                  Hero(
+                    tag: product["name"], // The animation "anchor"
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(
+                            "${config['apiUrl']}/uploads/${product["imageUrl"]}",
+                          ),
+                          // fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const Positioned(
-                  top: 10,
-                  right: 10,
-                  child: Icon(
-                    Icons.favorite_border,
-                    color: Colors.white,
-                    size: 24,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    product["name"],
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                  Text(
-                    "\$${product["price"]}",
-                    style: const TextStyle(
-                      color: Color(0xFF6C63FF),
-                      fontWeight: FontWeight.bold,
+                  const Positioned(
+                    top: 10,
+                    right: 10,
+                    child: Icon(
+                      Icons.favorite_border,
+                      color: Colors.white,
+                      size: 24,
                     ),
                   ),
                 ],
               ),
-            ],
-          ),
-        ],
+            ),
+            const SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        product["name"],
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      Text(
+                        "\$${product["price"]}",
+                        style: const TextStyle(
+                          color: Color(0xFF6C63FF),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -158,7 +176,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             "${config['apiUrl']}/uploads/${widget.product["imageUrl"]}",
                             height: 450,
                             width: double.infinity,
-                            fit: BoxFit.cover,
+                            // fit: BoxFit.cover,
                           ),
                         ),
                       ),
@@ -251,7 +269,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             height: 1.5,
                           ),
                         ),
-                        
                       ],
                     ),
                   ),
