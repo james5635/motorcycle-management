@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:motorcycle_management/tab/setting/motorcycle.dart';
 import 'package:motorcycle_management/tab/setting/setting.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,7 +20,7 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> _pages = [
     HomeTab(),
-    MotorcyclesTab(),
+    ProductGridScreen(),
     ChatTab(),
     ProfileSettingScreen(userId: (ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>)["userId"]!)  ,
   ];
@@ -67,12 +68,7 @@ class HomeTab extends StatelessWidget {
   }
 }
 
-class MotorcyclesTab extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text("Motorcycles"));
-  }
-}
+
 
 class ChatTab extends StatelessWidget {
   @override
