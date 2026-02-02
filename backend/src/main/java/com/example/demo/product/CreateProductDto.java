@@ -14,7 +14,6 @@ public record CreateProductDto(
         String description,
         BigDecimal price,
         Integer stockQuantity,
-        String imageUrl,
         String brand,
         Integer modelYear,
         Integer engineCc,

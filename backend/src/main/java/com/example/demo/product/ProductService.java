@@ -29,7 +29,7 @@ public class ProductService {
         return productRepository.findById(id).get();
     }
 
-    public Product createProduct(CreateProductDto dto) {
+    public Product createProduct(CreateProductDto dto, String filename) {
         Category c = categoryRepository.findById(dto.categoryId()).get();
 
         Product p = Product.builder()
@@ -38,7 +38,7 @@ public class ProductService {
                 .description(dto.description())
                 .price(dto.price())
                 .stockQuantity(dto.stockQuantity())
-                .imageUrl(dto.imageUrl())
+                .imageUrl(filename)
                 .brand(dto.brand())
                 .modelYear(dto.modelYear())
                 .engineCc(dto.engineCc())

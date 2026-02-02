@@ -19,4 +19,9 @@ public record UpdateProductDto(
         Optional<String> color,
         Optional<String> conditionStatus,
         Optional<LocalDateTime> createdAt) {
+
+    public UpdateProductDto withProductImageUrl(String filename) {
+        return new UpdateProductDto(categoryId, name, description, price, stockQuantity, Optional.of(filename),
+                brand, modelYear, engineCc, color, conditionStatus, createdAt);
+    }
 }
