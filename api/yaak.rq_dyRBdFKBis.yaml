@@ -1,0 +1,36 @@
+type: http_request
+model: http_request
+id: rq_dyRBdFKBis
+createdAt: 2026-01-26T09:11:54.942942410
+updatedAt: 2026-01-30T07:43:20.914496191
+workspaceId: wk_TfnDoAskcd
+folderId: fl_V2VP6yqSbF
+authentication: {}
+authenticationType: null
+body:
+  form:
+  - contentType: application/json
+    enabled: true
+    id: yICX5s3CTv
+    name: user
+    value: '{    "username": "okira",    "email": "okira@gmail.com"}'
+  - enabled: true
+    file: /home/jame/Downloads/sam_altman.0.1546423352.webp
+    id: YJ9xxNbVb4
+    name: profileImage
+  - enabled: true
+    id: vX6mMCG2FV
+    name: ''
+    value: ''
+bodyType: multipart/form-data
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: multipart/form-data
+  id: dsJEZBfVjm
+method: PUT
+name: UpdateUser
+sortPriority: 111.1111111111111
+url: ${[ URL ]}/user/3
+urlParameters: []

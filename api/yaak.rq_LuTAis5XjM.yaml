@@ -1,0 +1,37 @@
+type: http_request
+model: http_request
+id: rq_LuTAis5XjM
+createdAt: 2026-01-18T08:57:54.824440642
+updatedAt: 2026-01-28T05:56:30.455007694
+workspaceId: wk_TfnDoAskcd
+folderId: fl_V2VP6yqSbF
+authentication: {}
+authenticationType: null
+body:
+  form:
+  - contentType: ''
+    enabled: true
+    file: /home/jame/Downloads/John_Cena_on_the_Impaulsive_podcast.png
+    id: RKMeiuc8St
+    name: profileImage
+  - contentType: application/json
+    enabled: true
+    id: V5DJTzsPIe
+    name: user
+    value: '{"username":"joe","email": "joe@gmail.com","password": "123456","phoneNumber": "123213123","address": "pnom penh","role": "customer"}'
+  - enabled: true
+    id: 7HqKhIaaKt
+    name: ''
+    value: ''
+bodyType: multipart/form-data
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: multipart/form-data
+  id: VXtQevA9NA
+method: POST
+name: CreateUser
+sortPriority: 333.3333333333333
+url: ${[ URL ]}/user
+urlParameters: []

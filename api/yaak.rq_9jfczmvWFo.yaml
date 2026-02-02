@@ -1,0 +1,18 @@
+type: http_request
+model: http_request
+id: rq_9jfczmvWFo
+createdAt: 2026-02-02T05:06:49.610999252
+updatedAt: 2026-02-02T05:08:41.751022684
+workspaceId: wk_TfnDoAskcd
+folderId: fl_dLKbGoxAB8
+authentication: {}
+authenticationType: null
+body: {}
+bodyType: null
+description: ''
+headers: []
+method: GET
+name: GetAllCategory
+sortPriority: 111.1111111111111
+url: ${[ URL ]}/category
+urlParameters: []

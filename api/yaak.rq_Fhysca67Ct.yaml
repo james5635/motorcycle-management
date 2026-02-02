@@ -1,0 +1,30 @@
+type: http_request
+model: http_request
+id: rq_Fhysca67Ct
+createdAt: 2026-02-02T05:07:41.250734082
+updatedAt: 2026-02-02T05:17:05.200170263
+workspaceId: wk_TfnDoAskcd
+folderId: fl_dLKbGoxAB8
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {
+        "name" : "zoomer",
+
+        "description": "abc",
+
+        "imageUrl": "abc.com"
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: 5Fs9a2HWSg
+method: PUT
+name: UpdateCategory
+sortPriority: 111.11311111111112
+url: ${[ URL ]}/category/1
+urlParameters: []

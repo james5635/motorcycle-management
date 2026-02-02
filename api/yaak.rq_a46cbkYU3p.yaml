@@ -1,0 +1,18 @@
+type: http_request
+model: http_request
+id: rq_a46cbkYU3p
+createdAt: 2026-01-27T06:45:19.596652005
+updatedAt: 2026-01-28T04:44:08.710473229
+workspaceId: wk_TfnDoAskcd
+folderId: fl_V2VP6yqSbF
+authentication: {}
+authenticationType: null
+body: {}
+bodyType: null
+description: ''
+headers: []
+method: GET
+name: FetchImage
+sortPriority: 111.1111111111111
+url: ${[ URL ]}/uploads/f0d6d5f4-cd97-4c14-a13f-576112e2988c_sam_altman.0.1546423352.webp
+urlParameters: []

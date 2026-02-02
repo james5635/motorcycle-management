@@ -1,0 +1,16 @@
+type: folder
+model: folder
+id: fl_dbRjzTzZeM
+createdAt: 2026-01-21T10:34:30.408866801
+updatedAt: 2026-01-25T12:16:27.882166006
+workspaceId: wk_TfnDoAskcd
+folderId: null
+authentication:
+  disabled: false
+  password: abc@123
+  username: user
+authenticationType: basic
+description: ''
+headers: []
+name: Motocycle
+sortPriority: 0.0

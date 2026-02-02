@@ -1,0 +1,30 @@
+type: http_request
+model: http_request
+id: rq_yda4x9g47W
+createdAt: 2026-02-02T05:07:07.965257841
+updatedAt: 2026-02-02T05:10:41.090362048
+workspaceId: wk_TfnDoAskcd
+folderId: fl_dLKbGoxAB8
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {
+        "name" : "honda",
+
+        "description": "abc",
+
+        "imageUrl": "abc.com"
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: U9BjysW2Ch
+method: POST
+name: CreateCategory
+sortPriority: 111.1121111111111
+url: ${[ URL ]}/category
+urlParameters: []

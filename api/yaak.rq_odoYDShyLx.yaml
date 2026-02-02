@@ -1,0 +1,18 @@
+type: http_request
+model: http_request
+id: rq_odoYDShyLx
+createdAt: 2026-01-18T11:47:45.918494656
+updatedAt: 2026-01-26T08:23:26.999985024
+workspaceId: wk_TfnDoAskcd
+folderId: fl_V2VP6yqSbF
+authentication: {}
+authenticationType: null
+body: {}
+bodyType: null
+description: ''
+headers: []
+method: GET
+name: GetAllUser
+sortPriority: 111.1111111111111
+url: ${[ URL ]}/user
+urlParameters: []

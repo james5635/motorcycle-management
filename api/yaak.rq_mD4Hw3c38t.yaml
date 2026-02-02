@@ -1,0 +1,26 @@
+type: http_request
+model: http_request
+id: rq_mD4Hw3c38t
+createdAt: 2026-01-25T12:16:08.220522306
+updatedAt: 2026-01-25T12:26:50.439784512
+workspaceId: wk_TfnDoAskcd
+folderId: null
+authentication: {}
+authenticationType: null
+body: {}
+bodyType: null
+description: ''
+headers: []
+method: GET
+name: ''
+sortPriority: 1000.0
+url: https://8080-firebase-motorcycle-1769340866889.cluster-va5f6x3wzzh4stde63ddr3qgge.cloudworkstations.dev/
+urlParameters:
+- enabled: true
+  name: monospaceUid
+  value: '613775'
+  id: fENk0sAyAC
+- enabled: true
+  name: embedded
+  value: '0'
+  id: ggEtEVmNIY

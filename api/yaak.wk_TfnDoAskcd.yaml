@@ -1,0 +1,14 @@
+type: workspace
+model: workspace
+id: wk_TfnDoAskcd
+createdAt: 2026-01-18T08:56:30.164790496
+updatedAt: 2026-01-18T08:56:30.164791217
+authentication: {}
+authenticationType: null
+description: ''
+headers: []
+name: Yaak
+encryptionKeyChallenge: null
+settingValidateCertificates: true
+settingFollowRedirects: true
+settingRequestTimeout: 0

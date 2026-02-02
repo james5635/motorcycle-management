@@ -1,0 +1,18 @@
+type: http_request
+model: http_request
+id: rq_ESkEBWbNts
+createdAt: 2026-02-02T05:07:52.059852541
+updatedAt: 2026-02-02T05:09:04.698541907
+workspaceId: wk_TfnDoAskcd
+folderId: fl_dLKbGoxAB8
+authentication: {}
+authenticationType: null
+body: {}
+bodyType: null
+description: ''
+headers: []
+method: DELETE
+name: DeleteCategory
+sortPriority: 111.11411111111111
+url: ${[ URL ]}/category/1
+urlParameters: []

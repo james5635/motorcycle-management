@@ -1,0 +1,13 @@
+type: folder
+model: folder
+id: fl_aDahSZx6em
+createdAt: 2026-02-02T05:47:09.680825516
+updatedAt: 2026-02-02T07:14:42.470148492
+workspaceId: wk_TfnDoAskcd
+folderId: fl_dbRjzTzZeM
+authentication: {}
+authenticationType: null
+description: ''
+headers: []
+name: Product
+sortPriority: 3000.0

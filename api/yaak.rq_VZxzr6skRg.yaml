@@ -1,0 +1,36 @@
+type: http_request
+model: http_request
+id: rq_VZxzr6skRg
+createdAt: 2026-02-02T05:47:09.690110252
+updatedAt: 2026-02-02T07:49:13.866149419
+workspaceId: wk_TfnDoAskcd
+folderId: fl_aDahSZx6em
+authentication: {}
+authenticationType: null
+body:
+  form:
+  - contentType: application/json
+    enabled: true
+    id: HJYdZxyCt6
+    name: product
+    value: '{    "categoryId": 1,    "name": "wave",    "description": "good moto",    "price": 10,    "stockQuantity": 1,    "imageUrl": "aaa.com",    "brand": "honda",    "modelYear": 2022,    "engineCc": 12,    "color": "blue",    "conditionStatus": "new",    "createdAt" : "2025-02-02T00:00:00"}'
+  - enabled: true
+    file: /home/jame/Downloads/Honda_Zoomer-White.png
+    id: 7BqF7B3hxX
+    name: productImage
+  - enabled: true
+    id: 7WDtmWUHVR
+    name: ''
+    value: ''
+bodyType: multipart/form-data
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: multipart/form-data
+  id: 8cD0VrTrxc
+method: PUT
+name: UpdateProduct
+sortPriority: 5000.0
+url: ${[ URL ]}/product/1
+urlParameters: []

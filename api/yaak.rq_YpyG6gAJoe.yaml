@@ -1,0 +1,36 @@
+type: http_request
+model: http_request
+id: rq_YpyG6gAJoe
+createdAt: 2026-02-02T05:47:09.690607991
+updatedAt: 2026-02-02T07:49:13.853422507
+workspaceId: wk_TfnDoAskcd
+folderId: fl_aDahSZx6em
+authentication: {}
+authenticationType: null
+body:
+  form:
+  - contentType: application/json
+    enabled: true
+    id: NCuf8sdzVv
+    name: product
+    value: '{    "categoryId": 1,    "name": "fino",    "description": "good moto",    "price": 10,    "stockQuantity": 1,    "imageUrl": "aaa.com",    "brand": "honda",    "modelYear": 2022,    "engineCc": 12,    "color": "blue",    "conditionStatus": "new",    "createdAt" : "2025-02-02T00:00:00"}'
+  - enabled: true
+    file: /home/jame/Downloads/Yamaha-Fino-125-Grande-Luxury-Red.png
+    id: iJC3MPyfU7
+    name: productImage
+  - enabled: true
+    id: C47CNzv6NU
+    name: ''
+    value: ''
+bodyType: multipart/form-data
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: multipart/form-data
+  id: Cz0wjTSGAd
+method: POST
+name: CreateProduct
+sortPriority: 3000.0
+url: ${[ URL ]}/product
+urlParameters: []

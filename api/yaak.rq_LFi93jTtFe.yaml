@@ -1,0 +1,27 @@
+type: http_request
+model: http_request
+id: rq_LFi93jTtFe
+createdAt: 2026-01-21T12:10:34.042868603
+updatedAt: 2026-02-02T07:14:46.300898121
+workspaceId: wk_TfnDoAskcd
+folderId: fl_CcGRuTBhem
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {
+      "username" : "joe",
+      "password" : "123456"
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: ggigg2fcDz
+method: POST
+name: LoginUser
+sortPriority: 0.0
+url: ${[ URL ]}/auth/login
+urlParameters: []

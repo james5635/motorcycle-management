@@ -1,0 +1,18 @@
+type: http_request
+model: http_request
+id: rq_mM7YuCCsWt
+createdAt: 2026-02-02T07:15:33.094436202
+updatedAt: 2026-02-02T07:49:13.841412799
+workspaceId: wk_TfnDoAskcd
+folderId: fl_aDahSZx6em
+authentication: {}
+authenticationType: null
+body: {}
+bodyType: null
+description: ''
+headers: []
+method: GET
+name: FetchImage
+sortPriority: 1000.0
+url: ${[ URL ]}/uploads/82a75fd2-05d1-4102-8040-a27cc46a3922_Honda_Zoomer-White.png
+urlParameters: []

@@ -1,80 +1,46 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-
-// --- Data Model ---
-class Product {
-  final String name;
-  final String price;
-  final String imageUrl;
-  final String description;
-  final double rating;
-  final int reviews;
-
-  Product({
-    required this.name,
-    required this.price,
-    required this.imageUrl,
-    this.description =
-        "Culpa aliquam consequuntur veritatis at consequuntur praesentium beatae temporibus nobis. Velit dolorem facilis neque autem. Itaque voluptatem expedita qui eveniet id veritatis eaque.",
-    this.rating = 4.5,
-    this.reviews = 20,
-  });
-}
-
+import 'package:http/http.dart' as http;
+import 'package:motorcycle_management/config.dart';
 // --- 1. Product Grid Screen ---
 class ProductGridScreen extends StatelessWidget {
   const ProductGridScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final List<Product> products = [
-      Product(
-        name: "Watch",
-        price: "\$40",
-        imageUrl:
-            "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
-      ),
-      Product(
-        name: "Nike Shoes",
-        price: "\$430",
-        imageUrl: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
-      ),
-      Product(
-        name: "LG TV",
-        price: "\$330",
-        imageUrl:
-            "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1",
-      ),
-      Product(
-        name: "Airpods",
-        price: "\$333",
-        imageUrl:
-            "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
-      ),
-      Product(
-        name: "Jacket",
-        price: "\$50",
-        imageUrl: "https://images.unsplash.com/photo-1551028719-00167b16eac5",
-      ),
-      Product(
-        name: "Hoodie",
-        price: "\$400",
-        imageUrl: "https://images.unsplash.com/photo-1556821840-3a63f95609a7",
-      ),
-    ];
+   
 
     return Scaffold(
       backgroundColor: Colors.white,
 
-      body: GridView.builder(
-        padding: const EdgeInsets.all(16),
-        itemCount: products.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 0.72,
-          crossAxisSpacing: 15,
-          mainAxisSpacing: 15,
-        ),
-        itemBuilder: (context, index) => ProductCard(product: products[index]),
+      body: 
+      FutureBuilder(
+        future: (() async {
+          var products = await http.get(
+            Uri.parse("${config['apiUrl']}/product"),
+          );
+          return jsonDecode(products.body);
+        })(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          } else if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          } else {
+            return GridView.builder(
+              padding: const EdgeInsets.all(16),
+              itemCount: snapshot.data.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.72,
+                crossAxisSpacing: 15,
+                mainAxisSpacing: 15,
+              ),
+              itemBuilder: (context, index) => ProductCard(product: snapshot.data[index]),
+            );
+          }
+        },
       ),
     );
   }
@@ -82,7 +48,7 @@ class ProductGridScreen extends StatelessWidget {
 
 // --- Grid Item Widget ---
 class ProductCard extends StatelessWidget {
-  final Product product;
+  final Map<String, dynamic> product;
   const ProductCard({super.key, required this.product});
 
   @override
@@ -101,12 +67,12 @@ class ProductCard extends StatelessWidget {
             child: Stack(
               children: [
                 Hero(
-                  tag: product.name, // The animation "anchor"
+                  tag: product["name"], // The animation "anchor"
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
-                        image: NetworkImage(product.imageUrl),
+                        image: NetworkImage("${config['apiUrl']}/uploads/${product["imageUrl"]}"),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -132,14 +98,14 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    product.name,
+                    product["name"],
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
                   ),
                   Text(
-                    product.price,
+                    "\$${product["price"]}",
                     style: const TextStyle(
                       color: Color(0xFF6C63FF),
                       fontWeight: FontWeight.bold,
@@ -157,7 +123,7 @@ class ProductCard extends StatelessWidget {
 
 // --- 2. Product Detail Screen ---
 class ProductDetailScreen extends StatefulWidget {
-  final Product product;
+  final Map<String, dynamic> product;
   const ProductDetailScreen({super.key, required this.product});
 
   @override
@@ -183,13 +149,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   Stack(
                     children: [
                       Hero(
-                        tag: widget.product.name,
+                        tag: widget.product["name"],
                         child: ClipRRect(
                           borderRadius: const BorderRadius.vertical(
                             bottom: Radius.circular(30),
                           ),
                           child: Image.network(
-                            widget.product.imageUrl,
+                            "${config['apiUrl']}/uploads/${widget.product["imageUrl"]}",
                             height: 450,
                             width: double.infinity,
                             fit: BoxFit.cover,
@@ -229,14 +195,14 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              widget.product.name,
+                              widget.product["name"],
                               style: const TextStyle(
                                 fontSize: 26,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             Text(
-                              widget.product.price,
+                              "\$${widget.product["price"]}",
                               style: const TextStyle(
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold,
@@ -255,14 +221,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             ),
                             const SizedBox(width: 4),
                             Text(
-                              "${widget.product.rating} ",
+                              // "${widget.product.rating} ",
+                              "",
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
                               ),
                             ),
                             Text(
-                              "( ${widget.product.reviews} Review)",
+                              // "( ${widget.product.reviews} Review)",
+                              "(  Review)",
                               style: const TextStyle(color: Colors.grey),
                             ),
                           ],
@@ -277,7 +245,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          widget.product.description,
+                          widget.product["description"],
                           style: const TextStyle(
                             color: Colors.grey,
                             height: 1.5,
