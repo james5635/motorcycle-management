@@ -5,6 +5,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.example.demo.category.CategoryService;
+import com.example.demo.category.CreateCategoryDto;
 import com.example.demo.user.CreateUserDto;
 import com.example.demo.user.User;
 import com.example.demo.user.UserService;
@@ -13,9 +15,11 @@ import com.example.demo.user.UserService;
 public class DatabaseSeeder implements CommandLineRunner {
 
     private final UserService userService;
+    private final CategoryService categoryService;
 
-    public DatabaseSeeder(UserService userService) {
+    public DatabaseSeeder(UserService userService, CategoryService categoryService) {
         this.userService = userService;
+        this.categoryService = categoryService;
     }
 
     @Override
@@ -33,6 +37,10 @@ public class DatabaseSeeder implements CommandLineRunner {
                     .build();
             userService.createUser(u1, "a.jpg");
             userService.createUser(u2, "b.jpg");
+
+            CreateCategoryDto c1 = CreateCategoryDto.builder().name("honda").description("abc").imageUrl("abc.com")
+                    .build();
+            categoryService.createCategory(c1);
 
         }
     }
