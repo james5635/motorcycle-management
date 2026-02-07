@@ -5,6 +5,7 @@ import 'package:motorcycle_management/config.dart';
 import 'package:motorcycle_management/tab/setting/motorcycle.dart';
 import 'package:motorcycle_management/controller/cart_controller.dart';
 import 'package:motorcycle_management/tab/setting/cart_screen.dart';
+import 'package:motorcycle_management/tab/setting/search_result_screen.dart';
 import 'dart:ui';
 import 'dart:async';
 
@@ -24,7 +25,6 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
-  String _searchQuery = "";
   final TextEditingController _searchController = TextEditingController();
   final CartController _cartController = CartController();
 
@@ -70,10 +70,8 @@ class _HomeTabState extends State<HomeTab> {
             }
 
             final allProducts = (snapshot.data ?? [])..shuffle();
-            final products = allProducts.where((p) {
-              final name = (p['name'] ?? "").toString().toLowerCase();
-              return name.contains(_searchQuery.toLowerCase());
-            }).toList();
+            // Removed client-side filtering to prevent auto-search on typing
+            final products = allProducts;
 
             final featuredProducts = products.take(5).toList();
             final popularProducts = products.reversed.take(5).toList();
@@ -104,11 +102,8 @@ class _HomeTabState extends State<HomeTab> {
                             ),
                             child: TextField(
                               controller: _searchController,
-                              onChanged: (value) {
-                                setState(() {
-                                  _searchQuery = value;
-                                });
-                              },
+                              textInputAction: TextInputAction
+                                  .search, // Show search button on keyboard
                               decoration: InputDecoration(
                                 hintText: "Search your dream bike",
                                 hintStyle: const TextStyle(
@@ -119,26 +114,32 @@ class _HomeTabState extends State<HomeTab> {
                                   Icons.search,
                                   color: Colors.grey,
                                 ),
-                                suffixIcon: _searchQuery.isNotEmpty
-                                    ? IconButton(
-                                        icon: const Icon(
-                                          Icons.clear,
-                                          color: Colors.grey,
-                                          size: 20,
-                                        ),
-                                        onPressed: () {
-                                          setState(() {
-                                            _searchController.clear();
-                                            _searchQuery = "";
-                                          });
-                                        },
-                                      )
-                                    : null,
+                                suffixIcon: IconButton(
+                                  icon: const Icon(
+                                    Icons.clear,
+                                    color: Colors.grey,
+                                    size: 20,
+                                  ),
+                                  onPressed: () {
+                                    _searchController.clear();
+                                  },
+                                ),
                                 border: InputBorder.none,
                                 contentPadding: const EdgeInsets.symmetric(
                                   vertical: 15,
                                 ),
                               ),
+                              onSubmitted: (value) {
+                                if (value.isNotEmpty) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          SearchResultScreen(query: value),
+                                    ),
+                                  );
+                                }
+                              },
                             ),
                           ),
                         ),
