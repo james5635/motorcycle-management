@@ -28,10 +28,16 @@ class _HomeTabState extends State<HomeTab> {
   final TextEditingController _searchController = TextEditingController();
   final CartController _cartController = CartController();
 
+  late Future<List<dynamic>> _productsFuture;
+
   @override
   void initState() {
     super.initState();
     _cartController.addListener(_onCartChanged);
+    _searchController.addListener(() {
+      if (mounted) setState(() {});
+    });
+    _productsFuture = _fetchProducts();
   }
 
   void _onCartChanged() {
@@ -42,7 +48,9 @@ class _HomeTabState extends State<HomeTab> {
     try {
       final response = await http.get(Uri.parse("${config['apiUrl']}/product"));
       if (response.statusCode == 200) {
-        return jsonDecode(response.body);
+        final List<dynamic> products = jsonDecode(response.body);
+        products.shuffle(); // Shuffle only once when fetching
+        return products;
       }
     } catch (e) {
       print("Error fetching products: $e");
@@ -63,13 +71,13 @@ class _HomeTabState extends State<HomeTab> {
       backgroundColor: const Color(0xFFF8F9FB),
       body: SafeArea(
         child: FutureBuilder<List<dynamic>>(
-          future: _fetchProducts(),
+          future: _productsFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             }
 
-            final allProducts = (snapshot.data ?? [])..shuffle();
+            final allProducts = snapshot.data ?? [];
             // Removed client-side filtering to prevent auto-search on typing
             final products = allProducts;
 
@@ -114,16 +122,18 @@ class _HomeTabState extends State<HomeTab> {
                                   Icons.search,
                                   color: Colors.grey,
                                 ),
-                                suffixIcon: IconButton(
-                                  icon: const Icon(
-                                    Icons.clear,
-                                    color: Colors.grey,
-                                    size: 20,
-                                  ),
-                                  onPressed: () {
-                                    _searchController.clear();
-                                  },
-                                ),
+                                suffixIcon: _searchController.text.isNotEmpty
+                                    ? IconButton(
+                                        icon: const Icon(
+                                          Icons.clear,
+                                          color: Colors.grey,
+                                          size: 20,
+                                        ),
+                                        onPressed: () {
+                                          _searchController.clear();
+                                        },
+                                      )
+                                    : null,
                                 border: InputBorder.none,
                                 contentPadding: const EdgeInsets.symmetric(
                                   vertical: 15,
