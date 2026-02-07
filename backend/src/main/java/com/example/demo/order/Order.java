@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.order;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

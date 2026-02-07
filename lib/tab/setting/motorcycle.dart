@@ -7,6 +7,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:motorcycle_management/config.dart';
+import 'package:motorcycle_management/controller/cart_controller.dart';
 
 // --- 1. Product Grid Screen ---
 class ProductGridScreen extends StatelessWidget {
@@ -65,7 +66,12 @@ class ProductCard extends StatelessWidget {
       ),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 255, 255, 255), // Background color of the container
+          color: const Color.fromARGB(
+            255,
+            255,
+            255,
+            255,
+          ), // Background color of the container
           border: Border.all(
             // Defines the border
             color: const Color.fromARGB(255, 199, 199, 199), // Border color
@@ -284,11 +290,17 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      // Add your logic here!
+                      CartController().addToCart(widget.product);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Added to cart!"),
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: primaryColor,
-                      minimumSize: const Size.fromHeight(60), // FIXED HERE
+                      minimumSize: const Size.fromHeight(60),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
@@ -300,16 +312,27 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   ),
                 ),
                 const SizedBox(width: 15),
-                Container(
-                  height: 60,
-                  width: 70,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[100],
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: const Icon(
-                    Icons.shopping_bag_outlined,
-                    color: Colors.grey,
+                GestureDetector(
+                  onTap: () {
+                    CartController().addToCart(widget.product);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Added to cart!"),
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 60,
+                    width: 70,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[100],
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: const Icon(
+                      Icons.shopping_bag_outlined,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ],

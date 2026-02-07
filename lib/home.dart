@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:motorcycle_management/tab/setting/motorcycle.dart';
 import 'package:motorcycle_management/tab/setting/setting.dart';
+import 'package:motorcycle_management/tab/setting/home.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,18 +15,19 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
-
   @override
   Widget build(BuildContext context) {
+    final List<Widget> _pages = [
+      HomeTab(),
+      ProductGridScreen(),
+      ChatTab(),
+      ProfileSettingScreen(
+        userId:
+            (ModalRoute.of(context)!.settings.arguments
+                as Map<String, dynamic>)["userId"]!,
+      ),
+    ];
 
-  final List<Widget> _pages = [
-    HomeTab(),
-    ProductGridScreen(),
-    ChatTab(),
-    ProfileSettingScreen(userId: (ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>)["userId"]!)  ,
-  ];
-
-    
     return Scaffold(
       // appBar: AppBar(title: const Text("Home Page")),
       body: _pages[_currentIndex], // 👈 switch content here
@@ -50,25 +52,7 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class HomeTab extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        childAspectRatio: 1, // width / height
-      ),
-      itemCount: 20,
-      itemBuilder: (context, index) {
-        return Card(elevation: 4, child: Center(child: Text('Item $index')));
-      },
-    );
-  }
-}
-
-
+// Redundant local HomeTab removed
 
 class ChatTab extends StatelessWidget {
   @override
