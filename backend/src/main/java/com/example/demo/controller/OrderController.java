@@ -45,12 +45,12 @@ public class OrderController {
     public  Order createOrder(@RequestBody CreateOrderDto dto) {
         return orderService.createOrder(dto);
     }
-    // @PutMapping("/{id}")
-    // public Order updateOrder(@PathVariable long id, @RequestBody UpdateOrderDto dto) {
-    //     return orderService.updateOrder(id, dto);
-    // }
-    // @DeleteMapping("/{id}")
-    // public void deleteOrder(@PathVariable long id) {
-    //     orderService.deleteOrder(id);;
-    // }
+    @PutMapping("/{id}")
+    public Order updateOrder(@PathVariable long id, @RequestBody UpdateOrderDto dto) {
+        return orderService.updateOrder(id, dto);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteOrder(@PathVariable long id) {
+        orderService.deleteOrder(id);;
+    }
 }
