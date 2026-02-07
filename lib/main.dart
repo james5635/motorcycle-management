@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:motorcycle_management/home.dart';
 import 'package:motorcycle_management/login.dart';
-import 'package:motorcycle_management/tab/setting/edit_profile.dart';
+import 'package:motorcycle_management/tab/edit_profile.dart';
 import 'package:motorcycle_management/start.dart';
 import 'package:motorcycle_management/user.dart';
 

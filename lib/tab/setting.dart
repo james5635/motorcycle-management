@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:motorcycle_management/config.dart';
-import 'package:motorcycle_management/tab/setting/edit_profile.dart';
+import 'package:motorcycle_management/tab/edit_profile.dart';
 
 // --- SCREEN 1: PROFILE SETTING ---
 

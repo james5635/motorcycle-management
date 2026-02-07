@@ -2,10 +2,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:motorcycle_management/config.dart';
-import 'package:motorcycle_management/tab/setting/motorcycle.dart';
+import 'package:motorcycle_management/tab/motorcycle.dart';
 import 'package:motorcycle_management/controller/cart_controller.dart';
-import 'package:motorcycle_management/tab/setting/cart_screen.dart';
-import 'package:motorcycle_management/tab/setting/search_result_screen.dart';
+import 'package:motorcycle_management/tab/cart_screen.dart';
+import 'package:motorcycle_management/tab/search_result_screen.dart';
+import 'package:motorcycle_management/tab/section_product_screen.dart';
 import 'dart:ui';
 import 'dart:async';
 
@@ -267,7 +268,10 @@ class _HomeTabState extends State<HomeTab> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const ProductGridScreen(),
+                              builder: (context) => SectionProductScreen(
+                                title: "Featured Motorcycles",
+                                products: featuredProducts,
+                              ),
                             ),
                           );
                         },
@@ -302,7 +306,10 @@ class _HomeTabState extends State<HomeTab> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const ProductGridScreen(),
+                              builder: (context) => SectionProductScreen(
+                                title: "Most Popular",
+                                products: popularProducts,
+                              ),
                             ),
                           );
                         },

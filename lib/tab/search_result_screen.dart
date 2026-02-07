@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:motorcycle_management/config.dart';
-import 'package:motorcycle_management/tab/setting/motorcycle.dart';
+import 'package:motorcycle_management/tab/motorcycle.dart';
 
 class SearchResultScreen extends StatefulWidget {
   final String query;
