@@ -6,6 +6,7 @@ import 'package:motorcycle_management/tab/setting/motorcycle.dart';
 import 'package:motorcycle_management/controller/cart_controller.dart';
 import 'package:motorcycle_management/tab/setting/cart_screen.dart';
 import 'dart:ui';
+import 'dart:async';
 
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
   @override
@@ -204,90 +205,10 @@ class _HomeTabState extends State<HomeTab> {
                   ),
                   const SizedBox(height: 25),
 
-                  // Promo Banner (Motorcycle Theme)
+                  // Promo Carousel
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Container(
-                      height: 160,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [Color(0xFF2D3436), Color(0xFF636E72)],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            blurRadius: 10,
-                            offset: const Offset(0, 5),
-                          ),
-                        ],
-                      ),
-                      child: Stack(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text(
-                                  "New Arrivals 2024",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                const SizedBox(height: 5),
-                                const Text(
-                                  "Experience Speed",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 15,
-                                    vertical: 8,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFF6C63FF),
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: const Text(
-                                    "Shop Now",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Positioned(
-                            right: -20,
-                            bottom: -20,
-                            child: Opacity(
-                              opacity: 0.8,
-                              child: Image.network(
-                                "https://images.unsplash.com/photo-1558981403-c5f91cbba527?q=80&w=400&auto=format&fit=crop",
-                                width: 220,
-                                fit: BoxFit.contain,
-                                errorBuilder: (context, error, stackTrace) =>
-                                    const SizedBox(),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    child: const PromoCarousel(),
                   ),
                   const SizedBox(height: 25),
 
@@ -622,6 +543,192 @@ class ProductItem extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class PromoCarousel extends StatefulWidget {
+  const PromoCarousel({super.key});
+
+  @override
+  State<PromoCarousel> createState() => _PromoCarouselState();
+}
+
+class _PromoCarouselState extends State<PromoCarousel> {
+  final PageController _pageController = PageController();
+  int _currentPage = 0;
+  Timer? _timer;
+
+  final List<Map<String, String>> _promotions = [
+    {
+      "tag": "New Arrivals 2026",
+      "title": "Experience Speed",
+      "emoji": "🏍️",
+      "color1": "0xFF2D3436",
+      "color2": "0xFF636E72",
+    },
+    {
+      "tag": "Special Offer",
+      "title": "Up to 20% Off",
+      "emoji": "🏷️",
+      "color1": "0xFF6C63FF",
+      "color2": "0xFF8E8AFF",
+    },
+    {
+      "tag": "Limited Edition",
+      "title": "Ride in Style",
+      "emoji": "✨",
+      "color1": "0xFFE84393",
+      "color2": "0xFFFF7675",
+    },
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(const Duration(seconds: 5), (Timer timer) {
+      if (_currentPage < _promotions.length - 1) {
+        _currentPage++;
+      } else {
+        _currentPage = 0;
+      }
+
+      if (_pageController.hasClients) {
+        _pageController.animateToPage(
+          _currentPage,
+          duration: const Duration(milliseconds: 350),
+          curve: Curves.easeIn,
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 160,
+          child: PageView.builder(
+            controller: _pageController,
+            onPageChanged: (value) {
+              setState(() {
+                _currentPage = value;
+              });
+            },
+            itemCount: _promotions.length,
+            itemBuilder: (context, index) {
+              final promo = _promotions[index];
+              return Container(
+                margin: const EdgeInsets.only(right: 0),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color(int.parse(promo['color1']!)),
+                      Color(int.parse(promo['color2']!)),
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 10,
+                      offset: const Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            promo['tag']!,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            promo['title']!,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 15,
+                              vertical: 8,
+                            ),
+                            decoration: BoxDecoration(
+                              color: index == 1
+                                  ? Colors.white
+                                  : const Color(0xFF6C63FF),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Text(
+                              "Shop Now",
+                              style: TextStyle(
+                                color: index == 1
+                                    ? const Color(0xFF6C63FF)
+                                    : Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      right: 20,
+                      bottom: 20,
+                      child: Text(
+                        promo['emoji']!,
+                        style: const TextStyle(fontSize: 80),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List.generate(
+            _promotions.length,
+            (index) => Container(
+              margin: const EdgeInsets.symmetric(horizontal: 4),
+              width: _currentPage == index ? 20 : 8,
+              height: 8,
+              decoration: BoxDecoration(
+                color: _currentPage == index
+                    ? const Color(0xFF6C63FF)
+                    : Colors.grey[300],
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

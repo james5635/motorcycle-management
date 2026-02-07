@@ -53,6 +53,19 @@ class _CartScreenState extends State<CartScreen> {
       );
 
       if (response.statusCode == 200) {
+        _cartController.items.forEach((item) {
+          http.post(
+            Uri.parse("${config['apiUrl']}/orderitem"),
+            headers: {"Content-Type": "application/json"},
+            body: jsonEncode({
+              "orderId": jsonDecode(response.body)['orderId'],
+              "productId": item['productId'],
+              "quantity": item['quantity'],
+              "unitPrice": item['price'],
+            }),
+          );
+        });
+
         _cartController.clearCart();
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(

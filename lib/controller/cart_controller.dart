@@ -12,25 +12,26 @@ class CartController extends ChangeNotifier {
   void addToCart(Map<String, dynamic> product) {
     // Check if product already in cart
     int index = _items.indexWhere(
-      (item) => item['product_id'] == product['product_id'],
+      (item) => item['productId'] == product['productId'],
     );
     if (index != -1) {
       _items[index]['quantity'] = (_items[index]['quantity'] ?? 1) + 1;
     } else {
-      product['quantity'] = 1;
-      _items.add(product);
+      final newProduct = Map<String, dynamic>.from(product);
+      newProduct['quantity'] = 1;
+      _items.add(newProduct);
     }
     notifyListeners();
   }
 
   void removeFromCart(Map<String, dynamic> product) {
-    _items.removeWhere((item) => item['product_id'] == product['product_id']);
+    _items.removeWhere((item) => item['productId'] == product['productId']);
     notifyListeners();
   }
 
   void updateQuantity(Map<String, dynamic> product, int quantity) {
     int index = _items.indexWhere(
-      (item) => item['product_id'] == product['product_id'],
+      (item) => item['productId'] == product['productId'],
     );
     if (index != -1) {
       if (quantity <= 0) {

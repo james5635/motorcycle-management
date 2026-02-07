@@ -2,14 +2,14 @@ type: http_request
 model: http_request
 id: rq_wsUw2ZTieq
 createdAt: 2026-02-07T13:47:58.981395384
-updatedAt: 2026-02-07T13:49:31.639047390
+updatedAt: 2026-02-07T14:41:47.483553237
 workspaceId: wk_TfnDoAskcd
 folderId: fl_6E34RfrTbX
 authentication: {}
 authenticationType: null
 body:
   text: |-
-    {        "orderId": 1,
+    {        "orderId": 3,
             "productId": 1,
             "quantity": 2,
             "unitPrice": 12
