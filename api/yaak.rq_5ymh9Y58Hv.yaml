@@ -1,0 +1,28 @@
+type: http_request
+model: http_request
+id: rq_5ymh9Y58Hv
+createdAt: 2026-02-07T14:03:53.547826487
+updatedAt: 2026-02-07T14:04:23.298876670
+workspaceId: wk_TfnDoAskcd
+folderId: fl_6E34RfrTbX
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {        "orderId": 1,
+            "productId": 1,
+            "quantity": 2,
+            "unitPrice": 100
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: ruZ0C6ZYDz
+method: PUT
+name: UpdateOrderItem
+sortPriority: 333.33533333333327
+url: ${[ URL ]}/orderitem/1
+urlParameters: []

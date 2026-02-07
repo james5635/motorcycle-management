@@ -1,0 +1,30 @@
+type: http_request
+model: http_request
+id: rq_VBBSTkQupw
+createdAt: 2026-02-07T14:05:58.118813783
+updatedAt: 2026-02-07T14:11:10.384637090
+workspaceId: wk_TfnDoAskcd
+folderId: fl_dyRaQ5iQS4
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {               "userId": 1,
+                    "orderDate": "2025-02-02T00:00:00",
+                    "totalAmount": 120,
+                    "status": "pending",
+                    "shippingAddress": "phnom penh",
+                    "paymentMethod": "Wing"
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: R09qZM5XQR
+method: PUT
+name: UpdateOrder
+sortPriority: 333.3343333333333
+url: ${[ URL ]}/order/2
+urlParameters: []

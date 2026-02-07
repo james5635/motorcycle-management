@@ -40,21 +40,15 @@ class _CartScreenState extends State<CartScreen> {
 
     try {
       final response = await http.post(
-        Uri.parse("${config['apiUrl']}/api/orders/create"),
+        Uri.parse("${config['apiUrl']}/order"),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode({
-          "userId": 2, // Hardcoded for demo, should be current user ID
-          "shippingAddress": "123 Street, City",
-          "paymentMethod": "Credit Card",
-          "items": _cartController.items
-              .map(
-                (item) => {
-                  "productId": item['product_id'],
-                  "quantity": item['quantity'],
-                  "price": item['price'],
-                },
-              )
-              .toList(),
+          "userId": 1,
+          "orderDate": DateTime.now().toIso8601String(),
+          "totalAmount": _cartController.totalAmount,
+          "status": "pending",
+          "shippingAddress": "phnom penh",
+          "paymentMethod": "ABA",
         }),
       );
 

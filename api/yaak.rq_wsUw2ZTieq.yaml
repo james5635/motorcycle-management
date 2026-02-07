@@ -1,0 +1,28 @@
+type: http_request
+model: http_request
+id: rq_wsUw2ZTieq
+createdAt: 2026-02-07T13:47:58.981395384
+updatedAt: 2026-02-07T13:49:31.639047390
+workspaceId: wk_TfnDoAskcd
+folderId: fl_6E34RfrTbX
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {        "orderId": 1,
+            "productId": 1,
+            "quantity": 2,
+            "unitPrice": 12
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: XIFmBKeu5Z
+method: POST
+name: CreateOrderItem
+sortPriority: 333.3333333333333
+url: ${[ URL ]}/orderitem
+urlParameters: []

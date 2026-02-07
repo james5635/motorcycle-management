@@ -1,0 +1,18 @@
+type: http_request
+model: http_request
+id: rq_Lc3LqH4nTt
+createdAt: 2026-02-07T13:09:50.037440291
+updatedAt: 2026-02-07T13:51:40.033040347
+workspaceId: wk_TfnDoAskcd
+folderId: fl_dyRaQ5iQS4
+authentication: {}
+authenticationType: null
+body: {}
+bodyType: null
+description: ''
+headers: []
+method: GET
+name: GetAllOrder
+sortPriority: 333.3333333333333
+url: ${[ URL ]}/order/user/1
+urlParameters: []

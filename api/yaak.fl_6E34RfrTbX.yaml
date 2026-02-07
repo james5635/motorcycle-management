@@ -1,0 +1,13 @@
+type: folder
+model: folder
+id: fl_6E34RfrTbX
+createdAt: 2026-02-07T13:43:51.075169985
+updatedAt: 2026-02-07T13:43:51.075170802
+workspaceId: wk_TfnDoAskcd
+folderId: fl_dbRjzTzZeM
+authentication: {}
+authenticationType: null
+description: ''
+headers: []
+name: OrderItem
+sortPriority: -1770471831074.0

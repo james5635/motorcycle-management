@@ -1,0 +1,30 @@
+type: http_request
+model: http_request
+id: rq_RCwibkkdMU
+createdAt: 2026-02-07T10:40:36.453544410
+updatedAt: 2026-02-07T10:56:00.581932259
+workspaceId: wk_TfnDoAskcd
+folderId: fl_dyRaQ5iQS4
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {               "userId": 1,
+                    "orderDate": "2025-02-02T00:00:00",
+                    "totalAmount": 120,
+                    "status": "pending",
+                    "shippingAddress": "phnom penh",
+                    "paymentMethod": "ABA"
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: uxA5yRQcSr
+method: POST
+name: CreateOrder
+sortPriority: 333.3333333333333
+url: ${[ URL ]}/order
+urlParameters: []

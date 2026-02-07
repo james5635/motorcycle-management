@@ -1,0 +1,19 @@
+type: http_request
+model: http_request
+id: rq_2CWz4qyen4
+createdAt: 2026-02-07T14:04:45.005825326
+updatedAt: 2026-02-07T14:05:01.829058849
+workspaceId: wk_TfnDoAskcd
+folderId: fl_6E34RfrTbX
+authentication: {}
+authenticationType: null
+body:
+  text: ''
+bodyType: null
+description: ''
+headers: []
+method: DELETE
+name: DeleteOrderItem
+sortPriority: 333.33633333333324
+url: ${[ URL ]}/orderitem/1
+urlParameters: []
