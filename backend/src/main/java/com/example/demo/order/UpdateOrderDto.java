@@ -6,13 +6,14 @@ import lombok.Builder;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Builder
 public record UpdateOrderDto(
-        long userId,
-        LocalDateTime orderDate,
-        BigDecimal totalAmount,
-        String status,
-        String shippingAddress,
-        String paymentMethod) {
+        Optional<Long> userId,
+        Optional<LocalDateTime> orderDate,
+        Optional<BigDecimal> totalAmount,
+        Optional<String> status,
+        Optional<String> shippingAddress,
+        Optional<String> paymentMethod) {
 }

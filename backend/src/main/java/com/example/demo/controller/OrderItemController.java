@@ -3,12 +3,15 @@ package com.example.demo.controller;
 import com.example.demo.category.CreateCategoryDto;
 import com.example.demo.category.UpdateCategoryDto;
 import com.example.demo.order.CreateOrderDto;
+import com.example.demo.order.CreateOrderItemDto;
 import com.example.demo.order.Order;
 import com.example.demo.order.OrderItem;
 import com.example.demo.order.OrderRepository;
 import com.example.demo.order.OrderService;
 import com.example.demo.order.UpdateOrderDto;
+import com.example.demo.order.UpdateOrderItemDto;
 import com.example.demo.order.OrderItemRepository;
+import com.example.demo.order.OrderItemService;
 import com.example.demo.user.UserRepository;
 import com.example.demo.product.CreateProductDto;
 import com.example.demo.product.Product;
@@ -31,26 +34,30 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/order")
-public class OrderController {
+@RequestMapping("/orderitem")
+public class OrderItemController {
 
     @Autowired
-    private OrderService orderService;
+    private OrderItemService orderItemService;
   
-    @GetMapping("/user/{userId}")
-    public List<Order> getOrdersByUser(@PathVariable Long userId) {
-        return orderService.findByUser(userId);
+    @GetMapping
+    public List<OrderItem> getAllOrderItem() {
+        return orderItemService.getAllOrderItem();
+    }
+    @GetMapping("/{id}")
+    public OrderItem getOrderItem(@PathVariable long id) {
+        return orderItemService.getOrderItem(id);
     }
     @PostMapping
-    public  Order createOrder(@RequestBody CreateOrderDto dto) {
-        return orderService.createOrder(dto);
+    public  OrderItem createOrderItem(@RequestBody CreateOrderItemDto dto) {
+        return orderItemService.createOrderItem(dto);
     }
-    // @PutMapping("/{id}")
-    // public Order updateOrder(@PathVariable long id, @RequestBody UpdateOrderDto dto) {
-    //     return orderService.updateOrder(id, dto);
-    // }
-    // @DeleteMapping("/{id}")
-    // public void deleteOrder(@PathVariable long id) {
-    //     orderService.deleteOrder(id);;
-    // }
+    @PutMapping("/{id}")
+    public OrderItem updateOrderItem(@PathVariable long id, @RequestBody UpdateOrderItemDto dto) {
+        return orderItemService.updateOrderItem(id, dto);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteOrderItem(@PathVariable long id) {
+        orderItemService.deleteOrderItem(id);;
+    }
 }

@@ -7,9 +7,9 @@ import com.example.demo.product.Product;
 import lombok.Builder;
 
 @Builder
-public record CreateOrderItemdto(
+public record CreateOrderItemDto(
         long orderId,
-        Product product,
+        long productId,
         Integer quantity,
         BigDecimal unitPrice) {
 }
