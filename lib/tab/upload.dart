@@ -395,7 +395,7 @@ class _UploadScreenState extends State<UploadScreen> {
       value: _selectedCategoryId,
       items: _categories.map<DropdownMenuItem<String>>((dynamic category) {
         return DropdownMenuItem<String>(
-          value: category['id'].toString(),
+          value: category['categoryId'].toString(),
           child: Text(category['name']),
         );
       }).toList(),
