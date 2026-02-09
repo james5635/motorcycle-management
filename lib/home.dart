@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:motorcycle_management/tab/motorcycle.dart';
 import 'package:motorcycle_management/tab/setting.dart';
 import 'package:motorcycle_management/tab/home.dart';
+import 'package:motorcycle_management/tab/upload.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,6 +21,7 @@ class _HomePageState extends State<HomePage> {
     final List<Widget> _pages = [
       HomeTab(),
       ProductGridScreen(),
+      UploadScreen(),
       ChatTab(),
       ProfileSettingScreen(
         userId:
@@ -41,6 +43,7 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.motorcycle),
             label: "Motorcycles",
           ),
+          BottomNavigationBarItem(icon: Icon(Icons.upload), label: "Upload"),
           BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chat"),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
