@@ -67,12 +67,12 @@ public class DatabaseSeeder implements CommandLineRunner {
                 if (userService.count() == 0) {
                         CreateUserDto u1 = CreateUserDto.builder().username("jame").email("jame@gamil.com")
                                         .password("123456")
-                                        .phoneNumber("02213123").address("phnom penh").role("Customer")
+                                        .phoneNumber("02213123").address("phnom penh").role("customer")
                                         // .profileImageUrl("https://aaa.comss")
                                         .build();
                         CreateUserDto u2 = CreateUserDto.builder().username("jonh").email("jonh@gmail.com")
                                         .password("123456")
-                                        .phoneNumber("02213123").address("phnom penh").role("Customer")
+                                        .phoneNumber("02213123").address("phnom penh").role("customer")
                                         // .profileImageUrl("https://aaa.comas")
                                         .build();
 
