@@ -10,7 +10,7 @@
     "modelYear": 2023,
     "engineCc": 110,
     "color": "Red/Cream",
-    "conditionStatus": "new",
+    "conditionStatus": "New",
     "createdAt": "2025-02-02T00:00:00"
   },
   {
@@ -24,7 +24,7 @@
     "modelYear": 2022,
     "engineCc": 115,
     "color": "Red",
-    "conditionStatus": "new",
+    "conditionStatus": "New",
     "createdAt": "2025-02-02T00:00:00"
   },
   {
@@ -38,7 +38,7 @@
     "modelYear": 2023,
     "engineCc": 115,
     "color": "White/Orange",
-    "conditionStatus": "new",
+    "conditionStatus": "New",
     "createdAt": "2025-02-02T00:00:00"
   },
   {
@@ -52,7 +52,7 @@
     "modelYear": 2024,
     "engineCc": 125,
     "color": "White/Black",
-    "conditionStatus": "new",
+    "conditionStatus": "New",
     "createdAt": "2025-02-02T00:00:00"
   },
   {
@@ -66,7 +66,7 @@
     "modelYear": 2024,
     "engineCc": 125,
     "color": "Cyan Storm/White",
-    "conditionStatus": "new",
+    "conditionStatus": "New",
     "createdAt": "2025-02-02T00:00:00"
   },
   {
@@ -80,7 +80,7 @@
     "modelYear": 2023,
     "engineCc": 321,
     "color": "Phantom Purple/White",
-    "conditionStatus": "new",
+    "conditionStatus": "New",
     "createdAt": "2025-02-02T00:00:00"
   },
   {
@@ -94,7 +94,7 @@
     "modelYear": 2024,
     "engineCc": 649,
     "color": "Lime Green/Ebony",
-    "conditionStatus": "new",
+    "conditionStatus": "New",
     "createdAt": "2025-02-02T00:00:00"
   },
   {
@@ -108,7 +108,7 @@
     "modelYear": 2023,
     "engineCc": 125,
     "color": "White/Red",
-    "conditionStatus": "new",
+    "conditionStatus": "New",
     "createdAt": "2025-02-02T00:00:00"
   },
   {
@@ -136,7 +136,7 @@
     "modelYear": 2022,
     "engineCc": 110,
     "color": "White/Black",
-    "conditionStatus": "new",
+    "conditionStatus": "New",
     "createdAt": "2025-02-02T00:00:00"
   },
   {
@@ -150,7 +150,7 @@
     "modelYear": 2024,
     "engineCc": 125,
     "color": "Luxury Red",
-    "conditionStatus": "new",
+    "conditionStatus": "New",
     "createdAt": "2025-02-02T00:00:00"
   },
   {
@@ -164,7 +164,7 @@
     "modelYear": 2024,
     "engineCc": 450,
     "color": "Red",
-    "conditionStatus": "new",
+    "conditionStatus": "New",
     "createdAt": "2025-02-02T00:00:00"
   },
   {
@@ -178,7 +178,7 @@
     "modelYear": 2023,
     "engineCc": 1868,
     "color": "Vivid Black",
-    "conditionStatus": "new",
+    "conditionStatus": "New",
     "createdAt": "2025-02-02T00:00:00"
   },
   {
@@ -192,7 +192,7 @@
     "modelYear": 2024,
     "engineCc": 1254,
     "color": "Racing Blue Metallic",
-    "conditionStatus": "new",
+    "conditionStatus": "New",
     "createdAt": "2025-02-02T00:00:00"
   },
   {
@@ -206,7 +206,7 @@
     "modelYear": 2024,
     "engineCc": 998,
     "color": "Mirror Coated Spark Black/Candy Lime Green",
-    "conditionStatus": "new",
+    "conditionStatus": "New",
     "createdAt": "2025-02-02T00:00:00"
   },
   {
@@ -220,7 +220,7 @@
     "modelYear": 2024,
     "engineCc": 1103,
     "color": "Ducati Red",
-    "conditionStatus": "new",
+    "conditionStatus": "New",
     "createdAt": "2025-02-02T00:00:00"
   }
 ]
