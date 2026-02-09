@@ -32,6 +32,148 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
     return {"user": jsonDecode(user.body)};
   }
 
+  void _showChangePasswordDialog(
+    BuildContext context,
+    Map<String, dynamic> user,
+  ) {
+    final TextEditingController passwordController = TextEditingController();
+    final TextEditingController confirmController = TextEditingController();
+    bool isLoading = false;
+
+    showDialog(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setState) => AlertDialog(
+          title: const Text("Change Password"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: passwordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: "New Password",
+                  hintText: "Enter new password",
+                  prefixIcon: Icon(Icons.lock),
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: confirmController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: "Confirm Password",
+                  hintText: "Confirm new password",
+                  prefixIcon: Icon(Icons.lock_outline),
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: isLoading ? null : () => Navigator.pop(context),
+              child: const Text("Cancel"),
+            ),
+            ElevatedButton(
+              onPressed: isLoading
+                  ? null
+                  : () async {
+                      if (passwordController.text.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Please enter a password"),
+                          ),
+                        );
+                        return;
+                      }
+                      if (passwordController.text != confirmController.text) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Passwords do not match"),
+                          ),
+                        );
+                        return;
+                      }
+
+                      setState(() => isLoading = true);
+
+                      try {
+                        var request = http.MultipartRequest(
+                          'PUT',
+                          Uri.parse(
+                            "${config['apiUrl']}/user/${widget.userId}",
+                          ),
+                        );
+
+                        request.files.add(
+                          http.MultipartFile.fromString(
+                            'user',
+                            jsonEncode({
+                              "username":
+                                  user["username"] ??
+                                  user["fullName"] ??
+                                  "user",
+                              "password": passwordController.text,
+                            }),
+                            contentType: http.MediaType('application', 'json'),
+                          ),
+                        );
+
+                        var response = await request.send();
+                        var responseBody = await response.stream
+                            .bytesToString();
+
+                        if (response.statusCode == 200) {
+                          if (context.mounted) {
+                            Navigator.pop(context);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Password changed successfully!"),
+                                backgroundColor: Colors.green,
+                              ),
+                            );
+                          }
+                        } else {
+                          if (context.mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  "Failed to change password: $responseBody",
+                                ),
+                                backgroundColor: Colors.red,
+                              ),
+                            );
+                          }
+                        }
+                      } catch (e) {
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Error: $e"),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                        }
+                      } finally {
+                        if (context.mounted) {
+                          setState(() => isLoading = false);
+                        }
+                      }
+                    },
+              child: isLoading
+                  ? const SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : const Text("Change"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,10 +255,14 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                             }
                           },
                         ),
-                        const SettingsTile(
+                        SettingsTile(
                           icon: Icons.lock_outline,
                           title: "Change Password",
                           subtitle: "Update and strengthen account security",
+                          onTap: () => _showChangePasswordDialog(
+                            context,
+                            snapshot.data!["user"],
+                          ),
                         ),
                         SettingsTile(
                           icon: Icons.favorite,

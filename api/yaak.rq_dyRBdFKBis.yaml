@@ -2,7 +2,7 @@ type: http_request
 model: http_request
 id: rq_dyRBdFKBis
 createdAt: 2026-01-26T09:11:54.942942410
-updatedAt: 2026-01-30T07:43:20.914496191
+updatedAt: 2026-02-09T14:33:12.728327894
 workspaceId: wk_TfnDoAskcd
 folderId: fl_V2VP6yqSbF
 authentication: {}
@@ -13,13 +13,13 @@ body:
     enabled: true
     id: yICX5s3CTv
     name: user
-    value: '{    "username": "okira",    "email": "okira@gmail.com"}'
-  - enabled: true
-    file: /home/jame/Downloads/sam_altman.0.1546423352.webp
+    value: '{"username": "jame",  "password": "apple@123",  "email": "okira@gmail.com"}'
+  - enabled: false
+    file: /home/jame/Downloads/BFA13198-0E79-467F-AB87-866307EFA472.jpeg
     id: YJ9xxNbVb4
     name: profileImage
   - enabled: true
-    id: vX6mMCG2FV
+    id: AXuMmzCG2z
     name: ''
     value: ''
 bodyType: multipart/form-data
@@ -32,5 +32,5 @@ headers:
 method: PUT
 name: UpdateUser
 sortPriority: 111.1111111111111
-url: ${[ URL ]}/user/3
+url: ${[ URL ]}/user/1
 urlParameters: []
