@@ -114,7 +114,7 @@ class _HomeTabState extends State<HomeTab> {
                               textInputAction: TextInputAction
                                   .search, // Show search button on keyboard
                               decoration: InputDecoration(
-                                hintText: "Search your dream bike",
+                                hintText: "Search motorcycle",
                                 hintStyle: const TextStyle(
                                   color: Colors.grey,
                                   fontSize: 14,
