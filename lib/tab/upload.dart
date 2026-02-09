@@ -40,6 +40,19 @@ class _UploadScreenState extends State<UploadScreen> {
     _fetchCategories();
   }
 
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _descriptionController.dispose();
+    _priceController.dispose();
+    _stockController.dispose();
+    _brandController.dispose();
+    _modelYearController.dispose();
+    _engineCcController.dispose();
+    _colorController.dispose();
+    super.dispose();
+  }
+
   Future<void> _fetchCategories() async {
     try {
       final response = await http.get(
@@ -152,16 +165,16 @@ class _UploadScreenState extends State<UploadScreen> {
   }
 
   void _resetForm() {
+    _formKey.currentState?.reset();
+    _nameController.clear();
+    _descriptionController.clear();
+    _priceController.clear();
+    _stockController.clear();
+    _brandController.clear();
+    _modelYearController.clear();
+    _engineCcController.clear();
+    _colorController.clear();
     setState(() {
-      _formKey.currentState!.reset();
-      _nameController.clear();
-      _descriptionController.clear();
-      _priceController.clear();
-      _stockController.clear();
-      _brandController.clear();
-      _modelYearController.clear();
-      _engineCcController.clear();
-      _colorController.clear();
       _imageFile = null;
       _selectedCategoryId = null;
       _conditionStatus = 'New';
@@ -173,15 +186,15 @@ class _UploadScreenState extends State<UploadScreen> {
     const primaryColor = Color(0xFF6C63FF);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Upload Motorcycle',
-          style: TextStyle(color: Colors.black),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
-      ),
+      // appBar: AppBar(
+      //   title: const Text(
+      //     'Upload Motorcycle',
+      //     style: TextStyle(color: Colors.black),
+      //   ),
+      //   backgroundColor: Colors.white,
+      //   elevation: 0,
+      //   iconTheme: const IconThemeData(color: Colors.black),
+      // ),
       backgroundColor: Colors.white,
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -336,7 +349,7 @@ class _UploadScreenState extends State<UploadScreen> {
                     const SizedBox(height: 32),
 
                     ElevatedButton(
-                      onPressed: _uploadProduct,
+                      onPressed: _isLoading ? null : _uploadProduct,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: primaryColor,
                         padding: const EdgeInsets.symmetric(vertical: 16),
@@ -344,9 +357,9 @@ class _UploadScreenState extends State<UploadScreen> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      child: const Text(
-                        'Upload Motorcycle',
-                        style: TextStyle(
+                      child: Text(
+                        _isLoading ? 'Uploading...' : 'Upload Motorcycle',
+                        style: const TextStyle(
                           fontSize: 18,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
