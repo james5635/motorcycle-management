@@ -2,7 +2,7 @@ type: http_request
 model: http_request
 id: rq_RgsRrhMvVN
 createdAt: 2026-01-27T10:18:31.215097449
-updatedAt: 2026-01-28T05:56:38.338826758
+updatedAt: 2026-02-09T11:21:37.973395242
 workspaceId: wk_TfnDoAskcd
 folderId: fl_V2VP6yqSbF
 authentication: {}
@@ -14,5 +14,5 @@ headers: []
 method: DELETE
 name: DeleteUser
 sortPriority: 333.3343333333333
-url: ${[ URL ]}/user/1
+url: ${[ URL ]}/user/3
 urlParameters: []
