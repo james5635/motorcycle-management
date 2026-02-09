@@ -249,7 +249,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   }
 
                   try {
-                    var uri = Uri.parse("${config['apiUrl']}/user/${widget.user["userId"]}");
+                    var uri = Uri.parse(
+                      "${config['apiUrl']}/user/${widget.user["userId"]}",
+                    );
 
                     var request = http.MultipartRequest("PUT", uri);
 
@@ -305,6 +307,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           backgroundColor: Colors.green,
                         ),
                       );
+                      Navigator.pop(
+                        context,
+                        true,
+                      ); // Return true to indicate profile was updated
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
