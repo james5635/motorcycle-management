@@ -95,7 +95,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                         SettingsTile(
                           icon: Icons.person_outline,
                           title: "Edit Profile",
-                          subtitle: "Change profile picture, number, E-mail",
+                          subtitle: "Change profile picture and E-mail",
                           onTap: () async {
                             final result = await Navigator.push(
                               context,
