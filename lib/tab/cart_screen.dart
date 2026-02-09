@@ -170,7 +170,7 @@ class _CartScreenState extends State<CartScreen> {
                             ),
                             const SizedBox(height: 5),
                             Text(
-                              "\$${item['price']}",
+                              "\$${formatPrice(item['price'])}",
                               style: const TextStyle(
                                 color: Color(0xFF6C63FF),
                                 fontWeight: FontWeight.bold,
@@ -235,7 +235,7 @@ class _CartScreenState extends State<CartScreen> {
                           ),
                         ),
                         Text(
-                          "\$${_cartController.totalAmount.toStringAsFixed(2)}",
+                          "\$${formatPrice(_cartController.totalAmount)}",
                           style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,

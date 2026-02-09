@@ -2,7 +2,7 @@ type: http_request
 model: http_request
 id: rq_LuTAis5XjM
 createdAt: 2026-01-18T08:57:54.824440642
-updatedAt: 2026-01-28T05:56:30.455007694
+updatedAt: 2026-02-09T11:21:10.462903226
 workspaceId: wk_TfnDoAskcd
 folderId: fl_V2VP6yqSbF
 authentication: {}
@@ -11,16 +11,16 @@ body:
   form:
   - contentType: ''
     enabled: true
-    file: /home/jame/Downloads/John_Cena_on_the_Impaulsive_podcast.png
+    file: /home/jame/Desktop/coding/motorcycle-management/asset/user/A confident young businessman in a suit, posing professionally with a smile_  Stock Photo _ Adobe Stock.jpeg
     id: RKMeiuc8St
     name: profileImage
   - contentType: application/json
     enabled: true
     id: V5DJTzsPIe
     name: user
-    value: '{"username":"joe","email": "joe@gmail.com","password": "123456","phoneNumber": "123213123","address": "pnom penh","role": "customer"}'
+    value: '{"username":"joe","email":"joe@gmail.com","password":"123456","phoneNumber":"0123213123","address":"pnom penh","role":"customer", "createdAt":"2026-02-09T11:18:08.84841648"}'
   - enabled: true
-    id: 7HqKhIaaKt
+    id: aBmrvhvqaJ
     name: ''
     value: ''
 bodyType: multipart/form-data

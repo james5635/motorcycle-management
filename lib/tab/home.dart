@@ -548,7 +548,7 @@ class ProductItem extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    "\$${product["price"] ?? '0'}",
+                    "\$${formatPrice(product["price"])}",
                     style: const TextStyle(
                       color: Color(0xFF6C63FF),
                       fontWeight: FontWeight.bold,
