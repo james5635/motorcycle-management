@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:motorcycle_management/config.dart';
 import 'package:motorcycle_management/tab/edit_profile.dart';
+import 'package:motorcycle_management/tab/favorites_screen.dart';
 
 // --- SCREEN 1: PROFILE SETTING ---
 
@@ -116,6 +117,20 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                           icon: Icons.lock_outline,
                           title: "Change Password",
                           subtitle: "Update and strengthen account security",
+                        ),
+                        SettingsTile(
+                          icon: Icons.favorite,
+                          title: "My Favorites",
+                          subtitle: "View your saved products",
+                          iconColor: Colors.red,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const FavoritesScreen(),
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),

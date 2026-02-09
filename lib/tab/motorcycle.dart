@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:motorcycle_management/config.dart';
 import 'package:motorcycle_management/controller/cart_controller.dart';
+import 'package:motorcycle_management/controller/favorites_controller.dart';
 
 // --- 1. Product Grid Screen ---
 class ProductGridScreen extends StatelessWidget {
@@ -98,15 +99,6 @@ class ProductCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Positioned(
-                    top: 10,
-                    right: 10,
-                    child: Icon(
-                      Icons.favorite_border,
-                      color: Colors.white,
-                      size: 24,
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -153,6 +145,23 @@ class ProductDetailScreen extends StatefulWidget {
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   String selectedSize = "10";
+  final FavoritesController _favoritesController = FavoritesController();
+
+  @override
+  void initState() {
+    super.initState();
+    _favoritesController.addListener(_onFavoritesChanged);
+  }
+
+  @override
+  void dispose() {
+    _favoritesController.removeListener(_onFavoritesChanged);
+    super.dispose();
+  }
+
+  void _onFavoritesChanged() {
+    if (mounted) setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -197,9 +206,32 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                 () => Navigator.pop(context),
                               ),
                               _circleButton(
-                                Icons.favorite,
-                                () {},
-                                iconColor: Colors.grey,
+                                _favoritesController.isFavorite(widget.product)
+                                    ? Icons.favorite
+                                    : Icons.favorite_border,
+                                () {
+                                  _favoritesController.toggleFavorite(
+                                    widget.product,
+                                  );
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        _favoritesController.isFavorite(
+                                              widget.product,
+                                            )
+                                            ? "Added to favorites!"
+                                            : "Removed from favorites!",
+                                      ),
+                                      duration: const Duration(seconds: 2),
+                                    ),
+                                  );
+                                },
+                                iconColor:
+                                    _favoritesController.isFavorite(
+                                      widget.product,
+                                    )
+                                    ? Colors.red
+                                    : Colors.grey,
                               ),
                             ],
                           ),
