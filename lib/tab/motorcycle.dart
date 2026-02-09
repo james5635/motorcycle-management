@@ -240,25 +240,28 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         const SizedBox(height: 10),
                         Row(
                           children: [
-                            const Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                              size: 22,
-                            ),
-                            const SizedBox(width: 4),
-                            Text(
-                              // "${widget.product.rating} ",
-                              "",
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
+                            ...List.generate(
+                              calculateStars(widget.product["price"]),
+                              (index) => const Icon(
+                                Icons.star,
+                                color: Colors.amber,
+                                size: 22,
                               ),
                             ),
-                            Text(
-                              // "( ${widget.product.reviews} Review)",
-                              "(  Review)",
-                              style: const TextStyle(color: Colors.grey),
-                            ),
+                            // const SizedBox(width: 4),
+                            // Text(
+                            //   // "${widget.product.rating} ",
+                            //   "",
+                            //   style: const TextStyle(
+                            //     fontWeight: FontWeight.bold,
+                            //     fontSize: 16,
+                            //   ),
+                            // ),
+                            // Text(
+                            //   // "( ${widget.product.reviews} Review)",
+                            //   "(  Review)",
+                            //   style: const TextStyle(color: Colors.grey),
+                            // ),
                           ],
                         ),
                         const SizedBox(height: 25),
