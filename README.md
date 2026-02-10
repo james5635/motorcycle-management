@@ -4,7 +4,7 @@ Motorcycle Shop Management is a Flutter project that helps you manage your motor
 # TODO
 - [x] My Order
 - [x] FAQ
-- [ ] CHAT
+- [x] CHAT
 - [ ] Documentation
 - [ ] Slide
 
