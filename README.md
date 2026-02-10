@@ -18,6 +18,9 @@ Motorcycle Shop Management is a Flutter project that helps you manage your motor
 
 # Usage
 ```bash
+ollama serve
+```
+```bash
 cd backend 
 ./gradlew bootRun
 ```
