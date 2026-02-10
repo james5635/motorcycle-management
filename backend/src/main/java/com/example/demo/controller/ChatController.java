@@ -34,6 +34,6 @@ public class ChatController {
         if (prompt == null || prompt.isBlank()) {
             return Flux.just("error: prompt is required");
         }
-        return chatModel.stream(prompt);
+        return chatModel.stream(prompt).concatWithValues("[DONE]");
     }
 }

@@ -16,23 +16,29 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
+  List<Widget>? _pages;
+  Map<String, dynamic>? _userData;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_pages == null) {
+      _userData =
+          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+      _pages = [
+        HomeTab(),
+        ProductGridScreen(),
+        UploadScreen(),
+        ChatScreen(userData: _userData),
+        ProfileSettingScreen(userId: _userData?["userId"] ?? 0),
+      ];
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final userData =
-        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
-
-    final List<Widget> _pages = [
-      HomeTab(),
-      ProductGridScreen(),
-      UploadScreen(),
-      ChatScreen(userData: userData),
-      ProfileSettingScreen(userId: userData?["userId"] ?? 0),
-    ];
-
     return Scaffold(
-      // appBar: AppBar(title: const Text("Home Page")),
-      body: _pages[_currentIndex], // 👈 switch content here
+      body: IndexedStack(index: _currentIndex, children: _pages!),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,

@@ -140,8 +140,12 @@ class _ChatScreenState extends State<ChatScreen>
 
           final data = event.data;
           if (data != null && data.isNotEmpty) {
+            if (data.trim() == '[DONE]') {
+              _finishStreaming();
+              return;
+            }
             setState(() {
-              final newData = data.substring(0, data.length - 1);
+              final newData = data.trimRight();
               _currentStreamingText += newData;
             });
             WidgetsBinding.instance.addPostFrameCallback(
