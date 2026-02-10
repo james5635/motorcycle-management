@@ -240,18 +240,32 @@ class _HomeTabState extends State<HomeTab> {
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         padding: const EdgeInsets.symmetric(horizontal: 20),
-                        children: const [
-                          CategoryItem(icon: Icons.speed, label: "Sport"),
+                        children: [
+                          CategoryItem(
+                            icon: Icons.speed,
+                            label: "Sport",
+                            products: products,
+                          ),
                           CategoryItem(
                             icon: Icons.motorcycle,
                             label: "Cruiser",
+                            products: products,
                           ),
-                          CategoryItem(icon: Icons.terrain, label: "Off-Road"),
+                          CategoryItem(
+                            icon: Icons.terrain,
+                            label: "Off-Road",
+                            products: products,
+                          ),
                           CategoryItem(
                             icon: Icons.electric_bike,
                             label: "Scooter",
+                            products: products,
                           ),
-                          CategoryItem(icon: Icons.explore, label: "Touring"),
+                          CategoryItem(
+                            icon: Icons.explore,
+                            label: "Touring",
+                            products: products,
+                          ),
                         ],
                       ),
                     ),
@@ -428,40 +442,67 @@ class SectionHeader extends StatelessWidget {
 class CategoryItem extends StatelessWidget {
   final IconData icon;
   final String label;
+  final List<dynamic> products;
 
-  const CategoryItem({super.key, required this.icon, required this.label});
+  const CategoryItem({
+    super.key,
+    required this.icon,
+    required this.label,
+    required this.products,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 20),
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.03),
-                  blurRadius: 5,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Icon(icon, color: const Color(0xFF6C63FF), size: 28),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            label,
-            style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-              color: Colors.grey,
+    return GestureDetector(
+      onTap: () {
+        final filteredProducts = products.where((product) {
+          final category = product["category"];
+          if (category is Map<String, dynamic>) {
+            return category["name"] == label;
+          }
+          return false;
+        }).toList();
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SectionProductScreen(
+              title: "$label Motorcycles",
+              products: filteredProducts,
             ),
           ),
-        ],
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(right: 20),
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.03),
+                    blurRadius: 5,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Icon(icon, color: const Color(0xFF6C63FF), size: 28),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              label,
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

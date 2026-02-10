@@ -37,3 +37,58 @@ int calculateStars(dynamic price) {
 
   return sum;
 }
+
+var faq = [
+  {
+    "question": "What is Motorcycle Shop Management?",
+    "answer":
+        "Motorcycle Shop Management is a Flutter project that helps you manage your motorcycle shop. It is a mobile application that can be used by both customers and administrators.",
+  },
+  {
+    "question": "How do I create an account?",
+    "answer":
+        "You can create an account by clicking on the 'Create Account' button on the start page.",
+  },
+  {
+    "question": "How do I login?",
+    "answer":
+        "You can login by clicking on the 'Login' button on the start page.",
+  },
+  {
+    "question": "How do I logout?",
+    "answer":
+        "You can logout by clicking on the 'Logout' button on the setting page.",
+  },
+  {
+    "question": "How do I view my orders?",
+    "answer":
+        "You can view your orders by clicking on the 'My Orders' button on the setting page.",
+  },
+  {
+    "question": "How do I upload motorcycle?",
+    "answer": "You can upload motorcycle by clicking on the 'Upload' tab.",
+  },
+  {
+    "question": "How do I view all motorcycles?",
+    "answer":
+        "You can view all motorcycles by clicking on the 'Motorcycle' tab.",
+  },
+  {
+    "question": "How do I view my favorites?",
+    "answer":
+        "You can view your favorites by clicking on the 'Favorites' button on the setting page.",
+  },
+  {
+    "question": "How do I edit my profile?",
+    "answer":
+        "You can edit your profile by clicking on the 'Edit Profile' button on the setting page.",
+  },
+  {
+    "question": "How do I explore motorcycle?",
+    "answer": "You can explore motorcycles by clicking on the 'Home' tab.",
+  },
+  {
+    "question": "How do I chat with assistant?",
+    "answer": "You can chat with assistant by clicking on the 'Chat' tab.",
+  },
+];

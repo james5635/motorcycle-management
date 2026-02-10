@@ -350,15 +350,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 ),
                 const SizedBox(width: 15),
                 GestureDetector(
-                  onTap: () {
-                    CartController().addToCart(widget.product);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Added to cart!"),
-                        duration: Duration(seconds: 2),
-                      ),
-                    );
-                  },
+                  onTap: () => _showSpecsDialog(context),
                   child: Container(
                     height: 60,
                     width: 70,
@@ -366,10 +358,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       color: Colors.grey[100],
                       borderRadius: BorderRadius.circular(25),
                     ),
-                    child: const Icon(
-                      Icons.shopping_bag_outlined,
-                      color: Colors.black,
-                    ),
+                    child: const Icon(Icons.info_outline, color: Colors.black),
                   ),
                 ),
               ],
@@ -392,5 +381,123 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         child: Icon(icon, color: iconColor ?? Colors.black),
       ),
     );
+  }
+
+  void _showSpecsDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text(
+          "Specifications",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        content: FutureBuilder(
+          future: (() async {
+            var response = await http.get(
+              Uri.parse("${config['apiUrl']}/category"),
+            );
+            var categories = jsonDecode(response.body);
+            var categoryName = "Unknown";
+            var categoryId = widget.product["category"]["categoryId"];
+            for (var cat in categories) {
+              if (cat["categoryId"] == categoryId) {
+                categoryName = cat["name"];
+                break;
+              }
+            }
+            return categoryName;
+          })(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const SizedBox(
+                height: 100,
+                child: Center(child: CircularProgressIndicator()),
+              );
+            }
+
+            String categoryName = snapshot.data ?? "Unknown";
+
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _buildSpecRow("Category", categoryName),
+                  _buildSpecRow("Name", widget.product["name"] ?? "N/A"),
+                  _buildSpecRow("Brand", widget.product["brand"] ?? "N/A"),
+                  _buildSpecRow(
+                    "Model Year",
+                    widget.product["modelYear"]?.toString() ?? "N/A",
+                  ),
+                  _buildSpecRow(
+                    "Engine",
+                    "${widget.product["engineCc"] ?? "N/A"} CC",
+                  ),
+                  _buildSpecRow("Color", widget.product["color"] ?? "N/A"),
+                  _buildSpecRow(
+                    "Condition",
+                    widget.product["conditionStatus"] ?? "N/A",
+                  ),
+                  _buildSpecRow(
+                    "Stock",
+                    widget.product["stockQuantity"]?.toString() ?? "N/A",
+                  ),
+                  _buildSpecRow(
+                    "Added Date",
+                    _formatDate(
+                      widget.product["createdAt"] ??
+                          widget.product["addedDate"],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text("Close"),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSpecRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 100,
+            child: Text(
+              "$label:",
+              style: const TextStyle(
+                fontWeight: FontWeight.w600,
+                color: Colors.grey,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Text(
+              value,
+              style: const TextStyle(fontWeight: FontWeight.w500),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _formatDate(String? dateString) {
+    if (dateString == null || dateString.isEmpty) return "N/A";
+    try {
+      final date = DateTime.parse(dateString);
+      return "${date.day}/${date.month}/${date.year}";
+    } catch (e) {
+      return dateString;
+    }
   }
 }
