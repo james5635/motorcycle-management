@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_client_sse/flutter_client_sse.dart';
 import 'package:flutter_client_sse/constants/sse_request_type_enum.dart';
+import 'package:gpt_markdown/gpt_markdown.dart';
 import '../config.dart';
 
 enum MessageReaction { none, like, dislike }
@@ -226,6 +227,20 @@ class _ChatScreenState extends State<ChatScreen>
     );
   }
 
+  Widget _buildMessageContent(ChatMessage message) {
+    if (message.isUser) {
+      return Text(
+        message.text,
+        style: const TextStyle(color: Colors.white, fontSize: 15),
+      );
+    }
+    // Render AI messages as markdown
+    return GptMarkdown(
+      message.text,
+      style: const TextStyle(color: Colors.black87, fontSize: 15),
+    );
+  }
+
   Widget _buildMessage(ChatMessage message, int index) {
     return Column(
       crossAxisAlignment: message.isUser
@@ -269,15 +284,9 @@ class _ChatScreenState extends State<ChatScreen>
                     ],
                   ),
                   constraints: BoxConstraints(
-                    maxWidth: MediaQuery.of(context).size.width * 0.7,
+                    maxWidth: MediaQuery.of(context).size.width * 0.75,
                   ),
-                  child: Text(
-                    message.text,
-                    style: TextStyle(
-                      color: message.isUser ? Colors.white : Colors.black87,
-                      fontSize: 15,
-                    ),
-                  ),
+                  child: _buildMessageContent(message),
                 ),
               ),
               if (message.isUser) ...[
@@ -364,9 +373,10 @@ class _ChatScreenState extends State<ChatScreen>
                 ],
               ),
               constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width * 0.7,
+                maxWidth: MediaQuery.of(context).size.width * 0.75,
               ),
-              child: Text(
+              // Use GptMarkdown for streaming as well for consistency
+              child: GptMarkdown(
                 _currentStreamingText,
                 style: const TextStyle(color: Colors.black87, fontSize: 15),
               ),
