@@ -19,16 +19,15 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final userData =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+
     final List<Widget> _pages = [
       HomeTab(),
       ProductGridScreen(),
       UploadScreen(),
-      ChatScreen(),
-      ProfileSettingScreen(
-        userId:
-            (ModalRoute.of(context)!.settings.arguments
-                as Map<String, dynamic>)["userId"]!,
-      ),
+      ChatScreen(userData: userData),
+      ProfileSettingScreen(userId: userData?["userId"] ?? 0),
     ];
 
     return Scaffold(

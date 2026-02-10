@@ -2,7 +2,7 @@ type: http_request
 model: http_request
 id: rq_LFi93jTtFe
 createdAt: 2026-01-21T12:10:34.042868603
-updatedAt: 2026-02-02T07:14:46.300898121
+updatedAt: 2026-02-10T16:37:45.435506443
 workspaceId: wk_TfnDoAskcd
 folderId: fl_CcGRuTBhem
 authentication: {}
@@ -10,7 +10,7 @@ authenticationType: null
 body:
   text: |-
     {
-      "username" : "joe",
+      "username" : "jame",
       "password" : "123456"
     }
 bodyType: application/json
