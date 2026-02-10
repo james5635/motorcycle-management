@@ -1,0 +1,26 @@
+type: http_request
+model: http_request
+id: rq_c78WcH59XM
+createdAt: 2026-02-10T08:34:09.827077401
+updatedAt: 2026-02-10T10:01:12.293000319
+workspaceId: wk_TfnDoAskcd
+folderId: fl_mahJ5D5V9b
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {
+      "prompt": "hi?"
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: kkTvvMdpI9
+method: POST
+name: SendMessage
+sortPriority: 333.3333333333333
+url: ${[ URL ]}/chat
+urlParameters: []

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:motorcycle_management/tab/chat.dart';
 import 'package:motorcycle_management/tab/motorcycle.dart';
 import 'package:motorcycle_management/tab/setting.dart';
 import 'package:motorcycle_management/tab/home.dart';
@@ -22,7 +23,7 @@ class _HomePageState extends State<HomePage> {
       HomeTab(),
       ProductGridScreen(),
       UploadScreen(),
-      ChatTab(),
+      ChatScreen(),
       ProfileSettingScreen(
         userId:
             (ModalRoute.of(context)!.settings.arguments
@@ -52,14 +53,5 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
-  }
-}
-
-// Redundant local HomeTab removed
-
-class ChatTab extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text("Chat"));
   }
 }
