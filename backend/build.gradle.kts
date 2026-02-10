@@ -25,6 +25,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("com.google.guava:guava:33.5.0-jre")
   	runtimeOnly("com.mysql:mysql-connector-j")
+	
+	implementation(platform("org.springframework.ai:spring-ai-bom:2.0.0-M2"))
+	implementation("org.springframework.ai:spring-ai-starter-model-ollama")
 
 	compileOnly("org.projectlombok:lombok:1.18.42")
     annotationProcessor("org.projectlombok:lombok:1.18.42")
