@@ -37,3 +37,31 @@ int calculateStars(dynamic price) {
 
   return sum;
 }
+
+var faq = [
+  {
+    "question": "What is Motorcycle Shop Management?",
+    "answer":
+        "Motorcycle Shop Management is a Flutter project that helps you manage your motorcycle shop. It is a mobile application that can be used by both customers and administrators.",
+  },
+  {
+    "question": "How do I create an account?",
+    "answer":
+        "You can create an account by clicking on the 'Create Account' button on the login page.",
+  },
+  {
+    "question": "How do I login?",
+    "answer":
+        "You can login by clicking on the 'Login' button on the login page.",
+  },
+  {
+    "question": "How do I logout?",
+    "answer":
+        "You can logout by clicking on the 'Logout' button on the profile page.",
+  },
+  {
+    "question": "How do I view my orders?",
+    "answer":
+        "You can view your orders by clicking on the 'My Orders' button on the profile page.",
+  },
+];

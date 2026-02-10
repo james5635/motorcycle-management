@@ -165,10 +165,18 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                     const SectionHeader(title: "Preferences"),
                     SettingsCard(
                       children: [
-                        const SettingsTile(
+                        SettingsTile(
                           icon: Icons.help_outline,
                           title: "FAQ",
                           subtitle: "Frequently Asked Questions",
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const FAQScreen(),
+                              ),
+                            );
+                          },
                         ),
                         SettingsTile(
                           icon: Icons.shield_outlined,
@@ -1002,6 +1010,95 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
           style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
         ),
       ],
+    );
+  }
+}
+
+// --- FAQ SCREEN ---
+
+class FAQScreen extends StatelessWidget {
+  const FAQScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF8F9FB),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFF8F9FB),
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: const Text(
+          "FAQ",
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
+      ),
+      body: ListView.builder(
+        padding: const EdgeInsets.all(16),
+        itemCount: faq.length,
+        itemBuilder: (context, index) {
+          final item = faq[index];
+          return Container(
+            margin: const EdgeInsets.only(bottom: 12),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Theme(
+              data: Theme.of(
+                context,
+              ).copyWith(dividerColor: Colors.transparent),
+              child: ExpansionTile(
+                tilePadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
+                title: Text(
+                  item['question']!,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
+                ),
+                leading: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF6C63FF).withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Icon(
+                    Icons.help_outline,
+                    color: Color(0xFF6C63FF),
+                    size: 20,
+                  ),
+                ),
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                    child: Text(
+                      item['answer']!,
+                      style: TextStyle(
+                        color: Colors.grey[700],
+                        fontSize: 14,
+                        height: 1.5,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }
