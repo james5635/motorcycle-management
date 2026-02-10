@@ -80,11 +80,17 @@ class _ChatScreenState extends State<ChatScreen> {
             });
           }
 
+          // print("===" + event.data! + "==="); // Debug: Print the raw event data
+
           // Extract data from SSE event
           final data = event.data;
           if (data != null && data.isNotEmpty) {
             setState(() {
-              _currentStreamingText += data;
+              final newData = data.substring(
+                0,
+                data.length - 1,
+              ); // Remove the last character
+              _currentStreamingText += newData;
             });
             WidgetsBinding.instance.addPostFrameCallback(
               (_) => _scrollToBottom(),
