@@ -8,6 +8,7 @@ import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.model.Generation;
 import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,10 +28,9 @@ public class ChatController {
         this.chatModel = chatModel;
     }
 
-    @PostMapping
+    @PostMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> generate(@RequestBody Map<String, String> request) {
         String prompt = request.get("prompt");
-
         if (prompt == null || prompt.isBlank()) {
             return Flux.just("error: prompt is required");
         }
