@@ -50,7 +50,7 @@ class _StartPageState extends State<StartPage> {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      "Manage your motorcycles with ease",
+                      "Buy and sell motorcycles with ease",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16,
@@ -146,7 +146,7 @@ class _StartPageState extends State<StartPage> {
                       ),
                       SizedBox(height: 12),
                       Text(
-                        "Welcome to Motorcycle Management System",
+                        "Welcome to Motorcycle Shop Management",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
@@ -156,7 +156,7 @@ class _StartPageState extends State<StartPage> {
                       ),
                       SizedBox(height: 8),
                       Text(
-                        "Track your motorcycles, manage maintenance, and stay organized.",
+                        "Track motorcycles, upload motorcycles, and stay organized.",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white.withOpacity(0.8),
