@@ -38,6 +38,7 @@ dependencies:
   bcrypt: ^1.2.0
   image_picker: ^1.2.1
   http_parser: ^4.1.2
+  flutter_client_sse: ^2.0.3
 
 dev_dependencies:
   flutter_test:
