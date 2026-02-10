@@ -145,7 +145,8 @@ class _ChatScreenState extends State<ChatScreen>
               return;
             }
             setState(() {
-              final newData = data.trimRight();
+              // final newData = data.trimRight();
+              final newData = data.substring(0, data.length - 1);
               _currentStreamingText += newData;
             });
             WidgetsBinding.instance.addPostFrameCallback(
