@@ -1,27 +1,17 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# For the full list of built-in configuration values, see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
+# Sphinx configuration for Motorcycle Shop Management
 
-# -- Project information -----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
-
-project = 'Motorcycle Shop Management'
-copyright = '2026, Sou Chanrojame'
-author = 'Sou Chanrojame'
-
-# -- General configuration ---------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
+project = "Motorcycle Shop Management"
+copyright = "2026, Sou Chanrojame"
+author = "Sou Chanrojame"
+release = "1.0.0"
 
 extensions = []
 
-templates_path = ['_templates']
+latex_engine = "xelatex"
+
+templates_path = ["_templates"]
 exclude_patterns = []
 
-
-
-# -- Options for HTML output -------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
-
-html_theme = 'alabaster'
-html_static_path = ['_static']
+html_theme = "sphinx_rtd_theme"
+html_static_path = ["_static"]
+html_title = "Motorcycle Shop Management"
