@@ -14,6 +14,18 @@ This Flutter application connects to a Spring Boot backend API to provide:
 * Order placement
 * AI-powered chat assistance
 
+Features
+--------
+
+* User login and registration with profile images
+* Product catalog with categories (Sport, Cruiser, Off-Road, Scooter, Touring)
+* Shopping cart with quantity management
+* Favorites list
+* Product upload with image
+* AI chat assistant (SSE streaming)
+* Order history and checkout
+* Profile editing and password change
+
 Technology Stack
 ----------------
 
@@ -103,4 +115,5 @@ Key Endpoints
 Getting Started
 ---------------
 
-See :doc:`installation` for setup instructions.
+| See :doc:`quick-start` for quick setup.
+| See :doc:`installation` for setup instructions.
