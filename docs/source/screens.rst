@@ -16,6 +16,7 @@ Start Page (start.dart)
 -----------------------
 
 .. image:: ./_static/screenshot/start.png
+   :width: 300px
    :alt: alternate text
    :align: center
 
@@ -30,6 +31,7 @@ Login Page (login.dart)
 -----------------------
 
 .. image:: ./_static/screenshot/login.png
+   :width: 300px
    :alt: alternate text
    :align: center
 
@@ -44,6 +46,7 @@ Registration (user.dart)
 ------------------------
 
 .. image:: ./_static/screenshot/register.png
+   :width: 300px
    :alt: alternate text
    :align: center
 
@@ -62,6 +65,7 @@ Home Tab (tab/home.dart)
 ------------------------
 
 .. image:: ./_static/screenshot/home.png
+   :width: 300px
    :alt: alternate text
    :align: center
 
@@ -79,6 +83,7 @@ Motorcycles Tab (tab/motorcycle.dart)
 -------------------------------------
 
 .. image:: ./_static/screenshot/motorcycle.png
+   :width: 300px
    :alt: alternate text
    :align: center
 
@@ -100,6 +105,7 @@ Motorcycles Tab (tab/motorcycle.dart)
 **ProductDetailScreen**
 
 .. image:: ./_static/screenshot/detail.png
+   :width: 300px
    :alt: alternate text
    :align: center
 
@@ -115,6 +121,7 @@ Motorcycles Tab (tab/motorcycle.dart)
 **Specifications Dialog**
 
 .. image:: ./_static/screenshot/spec.png
+   :width: 300px
    :alt: alternate text
    :align: center
 
@@ -130,6 +137,7 @@ Upload Tab (tab/upload.dart)
 ----------------------------
 
 .. image:: ./_static/screenshot/upload.png
+   :width: 300px
    :alt: alternate text
    :align: center
 
@@ -149,6 +157,7 @@ Chat Tab (tab/chat.dart)
 ------------------------
 
 .. image:: ./_static/screenshot/chat_1.png
+   :width: 300px
    :alt: alternate text
    :align: center
 
@@ -174,6 +183,7 @@ Settings Tab (tab/setting.dart)
 -------------------------------
 
 .. image:: ./_static/screenshot/setting.png
+   :width: 300px
    :alt: alternate text
    :align: center
 
@@ -201,6 +211,7 @@ Preferences section:
 **ChangePasswordScreen**
 
 .. image:: ./_static/screenshot/password.png
+   :width: 300px
    :alt: alternate text
    :align: center
 
@@ -211,6 +222,7 @@ Preferences section:
 **OrdersListScreen**
 
 .. image:: ./_static/screenshot/order.png
+   :width: 300px
    :alt: alternate text
    :align: center
 
@@ -222,6 +234,7 @@ Preferences section:
 **OrderDetailScreen**
 
 .. image:: ./_static/screenshot/order_detail.png
+   :width: 300px
    :alt: alternate text
    :align: center
 
@@ -232,6 +245,7 @@ Preferences section:
 **FAQScreen**
 
 .. image:: ./_static/screenshot/faq.png
+   :width: 300px
    :alt: alternate text
    :align: center
 
@@ -241,6 +255,7 @@ Preferences section:
 **Terms Dialog**
 
 .. image:: ./_static/screenshot/term_of_use.png
+   :width: 300px
    :alt: alternate text
    :align: center
 
@@ -251,6 +266,7 @@ Cart Screen (tab/cart_screen.dart)
 ----------------------------------
 
 .. image:: ./_static/screenshot/cart_1.png
+   :width: 300px
    :alt: alternate text
    :align: center
 
@@ -268,6 +284,7 @@ Favorites Screen (tab/favorites_screen.dart)
 --------------------------------------------
 
 .. image:: ./_static/screenshot/fav.png
+   :width: 300px
    :alt: alternate text
    :align: center
 
@@ -280,6 +297,7 @@ Edit Profile (tab/edit_profile.dart)
 ------------------------------------
 
 .. image:: ./_static/screenshot/edit_profile.png
+   :width: 300px
    :alt: alternate text
    :align: center
 
