@@ -2,7 +2,7 @@
 
 project = "Motorcycle Shop Management"
 copyright = "2026, Sou Chanrojame"
-author = "Sou Chanrojame"
+author = "Sou Chanrojame, Yin Sothkry, Orn Pheakdey, Long Neron"
 release = "1.0.0"
 
 extensions = []
