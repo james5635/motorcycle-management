@@ -12,6 +12,7 @@
 .swiftpm/
 migrate_working_dir/
 uploads/
+*.mp4
 
 # IntelliJ related
 *.iml
