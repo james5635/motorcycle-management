@@ -16,5 +16,6 @@ Motorcycle Shop Management
    api-integration
    deployment
    troubleshooting
+   gallery
    backend/index
 

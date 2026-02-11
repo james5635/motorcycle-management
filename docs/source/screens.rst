@@ -15,6 +15,11 @@ Bottom navigation with 5 tabs in ``home.dart``:
 Start Page (start.dart)
 -----------------------
 
+.. image:: ./_static/screenshot/start.png
+   :width: 200px
+   :alt: alternate text
+   :align: center
+
 Landing screen with:
 
 * Gradient background
@@ -25,6 +30,11 @@ Landing screen with:
 Login Page (login.dart)
 -----------------------
 
+.. image:: ./_static/screenshot/login.png
+   :width: 200px
+   :alt: alternate text
+   :align: center
+
 Login form:
 
 * Username field
@@ -34,6 +44,11 @@ Login form:
 
 Registration (user.dart)
 ------------------------
+
+.. image:: ./_static/screenshot/register.png
+   :width: 200px
+   :alt: alternate text
+   :align: center
 
 Registration form with:
 
@@ -49,6 +64,11 @@ Registration form with:
 Home Tab (tab/home.dart)
 ------------------------
 
+.. image:: ./_static/screenshot/home.png
+   :width: 200px
+   :alt: alternate text
+   :align: center
+
 Features:
 
 * Search bar (submits to SearchResultScreen)
@@ -61,6 +81,11 @@ Features:
 
 Motorcycles Tab (tab/motorcycle.dart)
 -------------------------------------
+
+.. image:: ./_static/screenshot/motorcycle.png
+   :width: 200px
+   :alt: alternate text
+   :align: center
 
 **ProductGridScreen**
 
@@ -79,6 +104,11 @@ Motorcycles Tab (tab/motorcycle.dart)
 
 **ProductDetailScreen**
 
+.. image:: ./_static/screenshot/detail.png
+   :width: 200px
+   :alt: alternate text
+   :align: center
+
 * Large image with Hero animation
 * Back button (circle)
 * Favorite toggle button
@@ -90,6 +120,11 @@ Motorcycles Tab (tab/motorcycle.dart)
 
 **Specifications Dialog**
 
+.. image:: ./_static/screenshot/spec.png
+   :width: 200px
+   :alt: alternate text
+   :align: center
+
 Shows in popup:
 
 * Category name (fetched from /category)
@@ -100,6 +135,11 @@ Shows in popup:
 
 Upload Tab (tab/upload.dart)
 ----------------------------
+
+.. image:: ./_static/screenshot/upload.png
+   :width: 200px
+   :alt: alternate text
+   :align: center
 
 Form for adding new motorcycles:
 
@@ -115,6 +155,11 @@ All fields validated (required).
 
 Chat Tab (tab/chat.dart)
 ------------------------
+
+.. image:: ./_static/screenshot/chat_1.png
+   :width: 200px
+   :alt: alternate text
+   :align: center
 
 AI chat interface:
 
@@ -136,6 +181,11 @@ Uses SSE (Server-Sent Events) for streaming responses.
 
 Settings Tab (tab/setting.dart)
 -------------------------------
+
+.. image:: ./_static/screenshot/setting.png
+   :width: 200px
+   :alt: alternate text
+   :align: center
 
 **ProfileSettingScreen**
 
@@ -160,11 +210,21 @@ Preferences section:
 
 **ChangePasswordScreen**
 
+.. image:: ./_static/screenshot/password.png
+   :width: 200px
+   :alt: alternate text
+   :align: center
+
 * New password field
 * Confirm password field
 * Change button → PUT /user/{id}
 
 **OrdersListScreen**
+
+.. image:: ./_static/screenshot/order.png
+   :width: 200px
+   :alt: alternate text
+   :align: center
 
 * List of user orders
 * Order number, date, status, total
@@ -173,22 +233,42 @@ Preferences section:
 
 **OrderDetailScreen**
 
+.. image:: ./_static/screenshot/order_detail.png
+   :width: 200px
+   :alt: alternate text
+   :align: center
+
 * Order status
 * Order date, total, payment method, shipping address
 * Products in order (with images)
 
 **FAQScreen**
 
+.. image:: ./_static/screenshot/faq.png
+   :width: 200px
+   :alt: alternate text
+   :align: center
+
 * Expandable list of FAQ items
 * Question and answer format
 
 **Terms Dialog**
+
+.. image:: ./_static/screenshot/term_of_use.png
+   :width: 200px
+   :alt: alternate text
+   :align: center
 
 * Shows Apache License 2.0 text
 * Scrollable content
 
 Cart Screen (tab/cart_screen.dart)
 ----------------------------------
+
+.. image:: ./_static/screenshot/cart_1.png
+   :width: 200px
+   :alt: alternate text
+   :align: center
 
 Shopping cart:
 
@@ -203,6 +283,11 @@ Shopping cart:
 Favorites Screen (tab/favorites_screen.dart)
 --------------------------------------------
 
+.. image:: ./_static/screenshot/fav.png
+   :width: 200px
+   :alt: alternate text
+   :align: center
+
 * 2-column grid of favorites
 * Heart icon to remove
 * Empty state with icon and text
@@ -210,6 +295,11 @@ Favorites Screen (tab/favorites_screen.dart)
 
 Edit Profile (tab/edit_profile.dart)
 ------------------------------------
+
+.. image:: ./_static/screenshot/edit_profile.png
+   :width: 200px
+   :alt: alternate text
+   :align: center
 
 Form with:
 
