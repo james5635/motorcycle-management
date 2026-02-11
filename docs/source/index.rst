@@ -1,9 +1,8 @@
-Motorcycle Shop Management - Flutter App
-========================================
+Motorcycle Shop Management
+==========================
 
 .. toctree::
    :maxdepth: 2
-   :caption: Flutter Frontend
 
    introduction
    quick-start
@@ -18,12 +17,8 @@ Motorcycle Shop Management - Flutter App
    deployment
    troubleshooting
 
-Motorcycle Shop Management - Spring Boot Backend
-================================================
-
 .. toctree::
    :maxdepth: 2
-   :caption: Spring Boot Backend
 
    backend-introduction
    backend-installation
@@ -35,5 +30,4 @@ Motorcycle Shop Management - Spring Boot Backend
    backend-security
    backend-ai-integration
    backend-deployment
-
 

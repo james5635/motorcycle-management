@@ -454,10 +454,3 @@ Check:
     # Restart Ollama
     ollama serve
 
-Next Steps
-----------
-
-* Monitor application metrics
-* Set up alerting
-* Configure automated backups
-* Document API for consumers

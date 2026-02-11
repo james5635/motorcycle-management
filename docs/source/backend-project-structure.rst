@@ -111,7 +111,7 @@ All REST controllers are in the ``controller`` package:
     └── ChatController.java      # AI chat endpoints
 
 Configuration Classes
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
 **DemoApplication.java**
 
