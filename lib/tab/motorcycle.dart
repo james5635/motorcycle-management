@@ -11,8 +11,22 @@ import 'package:motorcycle_management/controller/cart_controller.dart';
 import 'package:motorcycle_management/controller/favorites_controller.dart';
 
 // --- 1. Product Grid Screen ---
-class ProductGridScreen extends StatelessWidget {
+class ProductGridScreen extends StatefulWidget {
   const ProductGridScreen({super.key});
+
+  @override
+  State<ProductGridScreen> createState() => _ProductGridScreenState();
+}
+
+class _ProductGridScreenState extends State<ProductGridScreen> {
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      GlobalKey<RefreshIndicatorState>();
+  List<dynamic> _products = [];
+  
+  Future<void> _fetchProduct() async {
+    var response = await http.get(Uri.parse("${config['apiUrl']}/product"));
+    _products = jsonDecode(response.body);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,29 +34,35 @@ class ProductGridScreen extends StatelessWidget {
       backgroundColor: Colors.white,
 
       body: FutureBuilder(
-        future: (() async {
-          var products = await http.get(
-            Uri.parse("${config['apiUrl']}/product"),
-          );
-          return jsonDecode(products.body);
-        })(),
+        future: _fetchProduct(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else {
-            return GridView.builder(
-              padding: const EdgeInsets.all(16),
-              itemCount: snapshot.data.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.72,
-                crossAxisSpacing: 15,
-                mainAxisSpacing: 15,
+            return RefreshIndicator(
+              key: _refreshIndicatorKey,
+              onRefresh: () async {
+                var response = await http.get(
+                  Uri.parse("${config['apiUrl']}/product"),
+                );
+                setState(() {
+                  _products = jsonDecode(response.body);
+                });
+              },
+              child: GridView.builder(
+                padding: const EdgeInsets.all(16),
+                itemCount: _products.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.72,
+                  crossAxisSpacing: 15,
+                  mainAxisSpacing: 15,
+                ),
+                itemBuilder: (context, index) =>
+                    ProductCard(product: _products[index]),
               ),
-              itemBuilder: (context, index) =>
-                  ProductCard(product: snapshot.data[index]),
             );
           }
         },
