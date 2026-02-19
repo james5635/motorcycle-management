@@ -10,7 +10,7 @@ Motorcycle Shop Management is a Flutter project that helps you manage your motor
 - FAQ System
 
 # Documentation
-Documentation is in docs folder.
+The documentation is located in the `docs` directory.
 
 # Usage
 ```bash
