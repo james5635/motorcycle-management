@@ -12,6 +12,9 @@ Motorcycle Shop Management is a Flutter project that helps you manage your motor
 # Documentation
 The documentation is located in the `docs` directory.
 
+# Demo
+[https://youtu.be/LSH0VtAHXKE](https://youtu.be/LSH0VtAHXKE)
+
 # Usage
 ```bash
 ollama serve
